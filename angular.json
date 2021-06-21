@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "projects": {
+    "pfe-platform": {
+      "projectType": "application",
+      "root": "apps/pfe-platform",
+      "sourceRoot": "apps/pfe-platform/src",
+      "prefix": "pfe-platform",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/pfe-platform",
+            "index": "apps/pfe-platform/src/index.html",
+            "main": "apps/pfe-platform/src/main.ts",
+            "polyfills": "apps/pfe-platform/src/polyfills.ts",
+            "tsConfig": "apps/pfe-platform/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/pfe-platform/src/favicon.ico",
+              "apps/pfe-platform/src/assets"
+            ],
+            "styles": ["apps/pfe-platform/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/pfe-platform/src/environments/environment.ts",
+                  "with": "apps/pfe-platform/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "pfe-platform:build:production"
+            },
+            "development": {
+              "browserTarget": "pfe-platform:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "pfe-platform:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/pfe-platform/src/**/*.ts",
+              "apps/pfe-platform/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/pfe-platform"],
+          "options": {
+            "jestConfig": "apps/pfe-platform/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pfe-platform-e2e": {
+      "root": "apps/pfe-platform-e2e",
+      "sourceRoot": "apps/pfe-platform-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/pfe-platform-e2e/cypress.json",
+            "tsConfig": "apps/pfe-platform-e2e/tsconfig.e2e.json",
+            "devServerTarget": "pfe-platform:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "pfe-platform:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/pfe-platform-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "pfe-platform"
+}
