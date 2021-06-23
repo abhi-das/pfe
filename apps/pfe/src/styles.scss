@@ -37,3 +37,9 @@
 .lni-close::before {
   content: '\ea6a';
 }
+body {
+  background-image: url('./assets/background.jpg');
+  background-size: cover;
+  background-position: center fixed;
+  background-repeat: no-repeat;
+}

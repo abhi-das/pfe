@@ -11,14 +11,16 @@ import { TransactionService } from '../../services/transfer.service';
 export class TransactionListComponent implements OnInit, OnDestroy {
   transactionList: TransactionEntry[];
   subscription: Subscription;
+  subscriptionError: string;
   constructor(private trsHistorySrv: TransactionService) {}
 
   ngOnInit(): void {
     this.subscription = this.trsHistorySrv
       .loadTransferHistory()
-      .subscribe((res) => {
-        this.transactionList = res;
-      });
+      .subscribe(
+        (res) => this.transactionList = res,
+        (err) => this.subscriptionError = err
+      )
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

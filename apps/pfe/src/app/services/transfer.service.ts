@@ -20,8 +20,9 @@ export class TransactionService {
       .get<Transactions>(environment.apiUrl)
       .pipe(
         map((response) => response.data),
-        catchError((err) => {
-          return throwError(err);
+        catchError(() => {
+          const customError = "Error on loading transaction history!";
+          return throwError(customError);
         }),
         shareReplay()
       );

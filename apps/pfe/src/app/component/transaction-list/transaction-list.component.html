@@ -5,8 +5,13 @@
   </div>
   <div class="card-body">
     <pfe-filter></pfe-filter>
-    <div class="transaction-history_scrollable mt-3 pe-3 overflow-auto">
-      <pfe-transaction-list-item [transactionItem]="transactionList"></pfe-transaction-list-item>
-    </div>
+    <ng-container *ngIf="transactionList" >
+      <div class="transaction-history_scrollable mt-3 pe-3 overflow-auto">
+        <pfe-transaction-list-item [transactionItem]="transactionList"></pfe-transaction-list-item>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="subscriptionError">
+      <p class="text-danger fs-6">{{subscriptionError}}</p>
+    </ng-container>
   </div>
 </div>
