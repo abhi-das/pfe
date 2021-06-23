@@ -4,13 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      - 'apps/pfe/**'
-      - 'apps/pfe-e2e/**'
-      - 'libs/**'
+      - '/**'
 
 defaults:
   run:
-    working-directory: projects/pfe-platform
+    working-directory: /
 
 jobs:
   build:
