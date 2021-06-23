@@ -3,12 +3,6 @@ name: peach
 on:
   push:
     branches: [main]
-    paths:
-      - '/**'
-
-defaults:
-  run:
-    working-directory: /
 
 jobs:
   build:
