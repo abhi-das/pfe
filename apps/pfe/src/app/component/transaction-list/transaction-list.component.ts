@@ -13,6 +13,7 @@ export class TransactionListComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   subscriptionError: string;
   isLoading: boolean;
+  query: string;
   constructor(private trsHistorySrv: TransactionService) {}
 
   ngOnInit(): void {
@@ -26,6 +27,10 @@ export class TransactionListComponent implements OnInit, OnDestroy {
         },
         (err) => this.subscriptionError = err
       )
+  }
+  filterHistory(event: any) {
+    // console.log(event.currentTarget.value)
+    this.query = event.currentTarget.value;
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

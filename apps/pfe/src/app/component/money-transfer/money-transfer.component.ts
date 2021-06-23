@@ -17,9 +17,11 @@ export class MoneyTransferComponent implements OnInit {
   @ViewChild('modelContent') modelContent: TemplateRef<any>;
   transferForm: FormGroup;
   isTransferFormSubmitted = false;
+  accountBalance: number;
   constructor(private modalService: BsModalService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.accountBalance = 5824.7625;
     this.transferForm = this.fb.group({
       toAccount: new FormControl('', [Validators.required]),
       amount: new FormControl('', [Validators.required]),

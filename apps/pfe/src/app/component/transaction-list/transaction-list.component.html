@@ -4,19 +4,19 @@
     <strong>List</strong>
   </div>
   <div class="card-body">
-    <ng-container *ngIf="isLoading" >
-      <div class="text-center">
-        <pfe-loader></pfe-loader>
-      </div>
-    </ng-container>
     <ng-container *ngIf="transactionList">
-      <pfe-filter></pfe-filter>
+      <pfe-filter (inputChange)="filterHistory($event)"></pfe-filter>
       <div class="transaction-history_scrollable mt-3 pe-3 overflow-auto">
-        <pfe-transaction-list-item [transactionItem]="transactionList"></pfe-transaction-list-item>
+        <pfe-transaction-list-item [transactionItem]="transactionList | queryFilter: query"></pfe-transaction-list-item>
       </div>
     </ng-container>
     <ng-container *ngIf="subscriptionError">
       <p class="text-danger fs-6">{{subscriptionError}}</p>
+    </ng-container>
+    <ng-container *ngIf="isLoading" >
+      <div class="text-center">
+        <pfe-loader></pfe-loader>
+      </div>
     </ng-container>
   </div>
 </div>

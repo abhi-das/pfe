@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { TransactionListItemComponent } from './component/transaction-list-item/transaction-list-item.component';
 import { LoaderComponent } from './component/loader/loader.component';
+import { QueryFilterPipe } from './common/pipes/query-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LoaderComponent } from './component/loader/loader.component';
     TransactionListComponent,
     TransactionListItemComponent,
     LoaderComponent,
+    QueryFilterPipe,
   ],
   imports: [
     CommonModule,
