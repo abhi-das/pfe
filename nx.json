@@ -19,12 +19,15 @@
     }
   },
   "projects": {
-    "pfe-platform": {
+    "lib-bb-ui": {
       "tags": []
     },
-    "pfe-platform-e2e": {
+    "pfe": {
+      "tags": []
+    },
+    "pfe-e2e": {
       "tags": [],
-      "implicitDependencies": ["pfe-platform"]
+      "implicitDependencies": ["pfe"]
     }
   }
 }

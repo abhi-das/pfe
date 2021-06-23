@@ -1,0 +1,101 @@
+<div class="card border-0">
+  <div class="card-header bg-primary text-white pt-3 pb-3">
+    <i class="lni lni-credit-cards pe-3 fs-5 align-middle"></i
+    ><strong>Make</strong> Transfer
+  </div>
+  <div class="card-body">
+    <form [formGroup]="transferForm" class="transfer-form" autocomplete="off">
+      <div class="form-group mb-2">
+        <label class="mb-2" for="from-account">From Account</label>
+        <input
+          type="text"
+          class="form-control"
+          id="from-account"
+          placeholder="My Personal Account: €0000"
+          aria-label="my personal account"
+          disabled
+        />
+      </div>
+      <div class="form-group mb-2">
+        <label class="mb-2" for="to-account">To Account</label>
+        <input
+          type="text"
+          class="form-control fst-italic"
+          id="to-account"
+          placeholder="type an account name"
+          aria-label="to account"
+          formControlName="toAccount"
+        />
+        <!-- TODO: Can be separate component for error feedback -->
+        <div
+          *ngIf="onValidationCheck('toAccount')"
+          class="alert alert-light fade show mt-1 p-0 text-danger error"
+          role="alert"
+        >
+          <p
+            class="m-0 sr-only"
+            *ngIf="transferFormFields.toAccount.errors?.required"
+          >
+            This is a required field.
+          </p>
+        </div>
+      </div>
+      <div class="form-group mb-2">
+        <label class="mb-2" for="to-account">Account</label>
+        <div class="input-group">
+          <span class="input-group-text">€</span>
+          <input
+            type="text"
+            class="form-control fst-italic"
+            aria-label="Amount"
+            placeholder="specify the account"
+            formControlName="amount"
+          />
+        </div>
+        <!-- TODO: Can be separate component for error feedback -->
+        <div
+          *ngIf="onValidationCheck('amount')"
+          role="alert"
+          class="alert alert-light mt-1 p-0 text-danger error"
+        >
+          <p
+            class="m-0 sr-only"
+            *ngIf="transferFormFields.amount.errors?.required"
+          >
+            This is a required field.
+          </p>
+        </div>
+      </div>
+      <div class="float-end mt-3">
+        <pfe-submit-button
+          (submitForm)="onTransferFormSubmit()"
+        ></pfe-submit-button>
+      </div>
+    </form>
+  </div>
+</div>
+<ng-template #modelContent>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left"><strong>Review</strong>Transfer</h4>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <p class="fs-italic">Are you ready to send out this transfer?</p>
+    <p class="fw-bold">It will be send to account:</p>
+    <p>{{ this.transferForm.value.toAccount }}</p>
+    <p class="fw-bold">With the amount of:</p>
+    <p><span>€</span>{{ this.transferForm.value.amount }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" (click)="modalRef.hide()">Close</button>
+    <button type="button" class="btn btn-warning" (click)="onTransferSubmit()">
+      Send Transfer
+    </button>
+  </div>
+</ng-template>

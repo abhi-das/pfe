@@ -1,0 +1,14 @@
+.transaction-history {
+  &_scrollable {
+    max-height: 24em;
+  }
+  &_item {
+    border-bottom: 1px solid #e6e6e6;
+  }
+  &_item:last-child {
+    border-bottom: none;
+  }
+  .transaction-amount {
+    letter-spacing: 0.1rem;
+  }
+}

@@ -1,27 +1,60 @@
 {
   "version": 1,
   "projects": {
-    "pfe-platform": {
+    "lib-bb-ui": {
+      "projectType": "library",
+      "root": "libs/lib-bb-ui",
+      "sourceRoot": "libs/lib-bb-ui/src",
+      "prefix": "pfe",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/lib-bb-ui"],
+          "options": {
+            "jestConfig": "libs/lib-bb-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib-bb-ui/src/**/*.ts",
+              "libs/lib-bb-ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "pfe": {
       "projectType": "application",
-      "root": "apps/pfe-platform",
-      "sourceRoot": "apps/pfe-platform/src",
-      "prefix": "pfe-platform",
+      "root": "apps/pfe",
+      "sourceRoot": "apps/pfe/src",
+      "prefix": "pfe",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/pfe-platform",
-            "index": "apps/pfe-platform/src/index.html",
-            "main": "apps/pfe-platform/src/main.ts",
-            "polyfills": "apps/pfe-platform/src/polyfills.ts",
-            "tsConfig": "apps/pfe-platform/tsconfig.app.json",
+            "outputPath": "dist/apps/pfe",
+            "index": "apps/pfe/src/index.html",
+            "main": "apps/pfe/src/main.ts",
+            "polyfills": "apps/pfe/src/polyfills.ts",
+            "tsConfig": "apps/pfe/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "apps/pfe-platform/src/favicon.ico",
-              "apps/pfe-platform/src/assets"
+              "apps/pfe/src/favicon.ico",
+              "apps/pfe/src/assets",
+              {
+                "input": "libs/lib-bb-ui/src/assets",
+                "glob": "**/*",
+                "output": "assets/lib-bb-ui"
+              }
             ],
-            "styles": ["apps/pfe-platform/src/styles.scss"],
+            "styles": [
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "apps/pfe/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -40,8 +73,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "apps/pfe-platform/src/environments/environment.ts",
-                  "with": "apps/pfe-platform/src/environments/environment.prod.ts"
+                  "replace": "apps/pfe/src/environments/environment.ts",
+                  "with": "apps/pfe/src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -61,10 +94,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "pfe-platform:build:production"
+              "browserTarget": "pfe:build:production"
             },
             "development": {
-              "browserTarget": "pfe-platform:build:development"
+              "browserTarget": "pfe:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,50 +105,50 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pfe-platform:build"
+            "browserTarget": "pfe:build"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/pfe-platform/src/**/*.ts",
-              "apps/pfe-platform/src/**/*.html"
+              "apps/pfe/src/**/*.ts",
+              "apps/pfe/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/pfe-platform"],
+          "outputs": ["coverage/apps/pfe"],
           "options": {
-            "jestConfig": "apps/pfe-platform/jest.config.js",
+            "jestConfig": "apps/pfe/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "pfe-platform-e2e": {
-      "root": "apps/pfe-platform-e2e",
-      "sourceRoot": "apps/pfe-platform-e2e/src",
+    "pfe-e2e": {
+      "root": "apps/pfe-e2e",
+      "sourceRoot": "apps/pfe-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/pfe-platform-e2e/cypress.json",
-            "tsConfig": "apps/pfe-platform-e2e/tsconfig.e2e.json",
-            "devServerTarget": "pfe-platform:serve:development"
+            "cypressConfig": "apps/pfe-e2e/cypress.json",
+            "tsConfig": "apps/pfe-e2e/tsconfig.e2e.json",
+            "devServerTarget": "pfe:serve:development"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "pfe-platform:serve:production"
+              "devServerTarget": "pfe:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/pfe-platform-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": ["apps/pfe-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -151,5 +184,5 @@
       "style": "scss"
     }
   },
-  "defaultProject": "pfe-platform"
+  "defaultProject": "pfe"
 }
