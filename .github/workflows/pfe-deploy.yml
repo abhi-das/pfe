@@ -1,0 +1,26 @@
+name: peach
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'apps/pfe/**'
+      - 'apps/pfe-e2e/**'
+      - 'libs/**'
+
+defaults:
+  run:
+    working-directory: projects/pfe-platform
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '15'
+      - run: npm install -g yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn build:ci
