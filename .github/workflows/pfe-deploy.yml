@@ -3,6 +3,9 @@ name: peach
 on:
   push:
     branches: [main]
+    paths:
+      - 'apps/**'
+      - 'libs/**'
 
 jobs:
   build:
