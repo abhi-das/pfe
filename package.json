@@ -28,7 +28,7 @@
     "help": "nx help",
     "start:pfe": "ng serve --project=pfe --port 4100",
     "test:pfe": "ng test --project=pfe",
-    "prod:build:pfe": "ng build --prod --project=pfe base-href=/pfe",
+    "prod-pfe": "ng build --prod --project=pfe",
     "build:bb-ui": "ng build --prod --project=lib-bb-ui",
     "test:bb-ui": "ng test --project=lib-bb-ui",
     "kill:port": "npx kill-port 4100"
