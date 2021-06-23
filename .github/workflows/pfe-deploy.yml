@@ -2,7 +2,7 @@ name: peach
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - 'apps/pfe/**'
       - 'apps/pfe-e2e/**'
