@@ -12,13 +12,18 @@ export class TransactionListComponent implements OnInit, OnDestroy {
   transactionList: TransactionEntry[];
   subscription: Subscription;
   subscriptionError: string;
+  isLoading: boolean;
   constructor(private trsHistorySrv: TransactionService) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.subscription = this.trsHistorySrv
       .loadTransferHistory()
       .subscribe(
-        (res) => this.transactionList = res,
+        (res) => {
+          this.isLoading = false;
+          this.transactionList = res
+        },
         (err) => this.subscriptionError = err
       )
   }

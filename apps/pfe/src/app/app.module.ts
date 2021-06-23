@@ -11,6 +11,7 @@ import { TransactionService } from './services/transfer.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { TransactionListItemComponent } from './component/transaction-list-item/transaction-list-item.component';
+import { LoaderComponent } from './component/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TransactionListItemComponent } from './component/transaction-list-item/
     MoneyTransferComponent,
     TransactionListComponent,
     TransactionListItemComponent,
+    LoaderComponent,
   ],
   imports: [
     CommonModule,

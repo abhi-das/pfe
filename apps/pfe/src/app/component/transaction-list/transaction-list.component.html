@@ -4,8 +4,13 @@
     <strong>List</strong>
   </div>
   <div class="card-body">
-    <pfe-filter></pfe-filter>
-    <ng-container *ngIf="transactionList" >
+    <ng-container *ngIf="isLoading" >
+      <div class="text-center">
+        <pfe-loader></pfe-loader>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="transactionList">
+      <pfe-filter></pfe-filter>
       <div class="transaction-history_scrollable mt-3 pe-3 overflow-auto">
         <pfe-transaction-list-item [transactionItem]="transactionList"></pfe-transaction-list-item>
       </div>
