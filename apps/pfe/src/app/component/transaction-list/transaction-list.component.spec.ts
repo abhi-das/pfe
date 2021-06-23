@@ -1,4 +1,9 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
+import { PfeNgxModule } from '../../pfe-ngx/pfe-ngx.module';
+import { TransactionService } from '../../services/transfer.service';
 
 import { TransactionListComponent } from './transaction-list.component';
 
@@ -8,7 +13,14 @@ describe('TransactionListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        ReactiveFormsModule,
+        PfeNgxModule,
+        LibBbUiModule,
+        HttpClientModule
+      ],
       declarations: [TransactionListComponent],
+      providers: [TransactionService]
     }).compileComponents();
   });
 

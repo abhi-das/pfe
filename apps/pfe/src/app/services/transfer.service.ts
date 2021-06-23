@@ -4,6 +4,7 @@ import { TransactionEntry, Transactions } from '../models/transaction.model';
 
 import { map, catchError, shareReplay } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class TransactionService {
 
   loadTransferHistory(): Observable<TransactionEntry[]> {
     return this.http
-      .get<Transactions>('./assets/mock-data/transactions.json')
+      .get<Transactions>(environment.apiUrl)
       .pipe(
         map((response) => response.data),
         catchError((err) => {
@@ -25,4 +26,5 @@ export class TransactionService {
         shareReplay()
       );
   }
+
 }
