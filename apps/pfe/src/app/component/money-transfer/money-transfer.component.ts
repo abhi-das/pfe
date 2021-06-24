@@ -67,6 +67,7 @@ export class MoneyTransferComponent implements OnInit {
         name: this.transferFormFields.toAccount.value
       }
     }  as TransactionEntry;
+
     this.trsHistorySrv.addRecentTransaction(recentTransactionDetail);
     this.onReset();
     this.modalRef.hide();
