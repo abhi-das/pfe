@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TransactionEntry, Transactions } from '../models/transaction.model';
-
-<<<<<<< HEAD
 import { map, catchError, tap } from 'rxjs/operators';
-=======
-import { map, catchError, shareReplay, tap } from 'rxjs/operators';
->>>>>>> 58c771d560f6ba46ea0a5b17d8af8433470dc3cc
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 
