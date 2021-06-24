@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { TransactionEntry } from '../../models/transaction.model';
 import { TransactionService } from '../../services/transfer.service';
 
 @Component({
@@ -52,8 +53,22 @@ export class MoneyTransferComponent implements OnInit {
     );
   }
   onTransferSubmit() {
+
+    const recentTransactionDetail = {
+      dates: {
+        valueDate: Number(new Date().toLocaleString()),
+      },
+      transaction: {
+        amountCurrency: {
+          amount: Number(this.transferFormFields.amount.value)
+        }
+      },
+      merchant: {
+        name: this.transferFormFields.toAccount.value
+      }
+    }  as TransactionEntry;
+    this.trsHistorySrv.addRecentTransaction(recentTransactionDetail);
     this.onReset();
     this.modalRef.hide();
-    this.trsHistorySrv.addRecentTransaction();
   }
 }
