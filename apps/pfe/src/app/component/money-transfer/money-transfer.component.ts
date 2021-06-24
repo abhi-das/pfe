@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { TransactionService } from '../../services/transfer.service';
 
 @Component({
   selector: 'pfe-money-transfer',
@@ -18,7 +19,7 @@ export class MoneyTransferComponent implements OnInit {
   transferForm: FormGroup;
   isTransferFormSubmitted = false;
   accountBalance: number;
-  constructor(private modalService: BsModalService, private fb: FormBuilder) {}
+  constructor(private modalService: BsModalService, private fb: FormBuilder, private trsHistorySrv: TransactionService) {}
 
   ngOnInit(): void {
     this.accountBalance = 5824.7625;
@@ -53,5 +54,6 @@ export class MoneyTransferComponent implements OnInit {
   onTransferSubmit() {
     this.onReset();
     this.modalRef.hide();
+    this.trsHistorySrv.addRecentTransaction();
   }
 }

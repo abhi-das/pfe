@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { TransactionEntry } from '../../models/transaction.model';
 import { TransactionService } from '../../services/transfer.service';
 
@@ -11,22 +12,30 @@ import { TransactionService } from '../../services/transfer.service';
 export class TransactionListComponent implements OnInit, OnDestroy {
   transactionList: TransactionEntry[];
   subscription: Subscription;
+  subscriptionTest: Subscription;
   subscriptionError: string;
   isLoading: boolean;
   query: string;
+
+  transactionListItm: Observable<TransactionEntry[]>;
+
   constructor(private trsHistorySrv: TransactionService) {}
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.subscription = this.trsHistorySrv
-      .loadTransferHistory()
-      .subscribe(
-        (res) => {
-          this.isLoading = false;
-          this.transactionList = res
-        },
-        (err) => this.subscriptionError = err
-      )
+    this.transactionListItm = this.trsHistorySrv.getTransactionHistory().pipe(tap(() => this.isLoading = false));
+    // this.subscription = this.trsHistorySrv
+    //   .loadTransferHistory()
+    //   .subscribe(
+    //     (res) => {
+    //       this.isLoading = false;
+    //       this.transactionList = res
+    //     },
+    //     (err) => {
+    //       this.isLoading = false;
+    //       this.subscriptionError = err;
+    //     }
+    //   )
   }
   filterHistory(event: any) {
     // console.log(event.currentTarget.value)
