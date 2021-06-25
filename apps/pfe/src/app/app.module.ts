@@ -14,6 +14,7 @@ import { TransactionListItemComponent } from './component/transaction-list-item/
 import { LoaderComponent } from './component/loader/loader.component';
 import { QueryFilterPipe } from './common/pipes/query-filter.pipe';
 import { AmountValidatorDirective } from './common/directive/amount-validator/amount-validator.directive';
+import { RemovecommaPipe } from './common/pipes/removecomma.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AmountValidatorDirective } from './common/directive/amount-validator/am
     LoaderComponent,
     QueryFilterPipe,
     AmountValidatorDirective,
+    RemovecommaPipe,
   ],
   imports: [
     CommonModule,
