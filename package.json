@@ -12,7 +12,7 @@
     "format": "nx format:write",
     "dep-graph": "nx dep-graph",
     "dev-pfe": "ng serve --project=pfe --port 4100",
-    "test-pfe": "ng test --project=pfe",
+    "test-pfe": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
     "prod-pfe": "ng build --prod --project=pfe",
     "serve-prod": "ng serve --configuration=production",
     "test-bb-ui": "ng test --project=lib-bb-ui",
