@@ -50,6 +50,7 @@
             aria-label="Amount"
             placeholder="specify the account"
             formControlName="amount"
+            pfeAmountValidator
           />
         </div>
         <!-- TODO: Can be separate component for error feedback -->
@@ -63,6 +64,12 @@
             *ngIf="transferFormFields.amount.errors?.required"
           >
             This is a required field.
+          </p>
+          <p
+            class="m-0 sr-only"
+            *ngIf="transferFormFields.amount.errors?.amountInvalid"
+          >
+            Amount value is incorrect.
           </p>
         </div>
       </div>

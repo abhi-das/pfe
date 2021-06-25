@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "./assets/mock-data/transactions.json"
+  apiUrl: "https://r9vdzv10vd.execute-api.eu-central-1.amazonaws.com/dev/transactions"
 };

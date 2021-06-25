@@ -1,5 +1,5 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
-
+@import '~bootstrap/scss/bootstrap.scss';
 @font-face {
   font-family: 'LineIcons';
   src: url('./assets/fonts/LineIcons.eot');
@@ -38,8 +38,15 @@
   content: '\ea6a';
 }
 body {
-  background-image: url('./assets/background.jpg');
+  background-image: url('./assets/background.webp');
   background-size: cover;
   background-position: center fixed;
   background-repeat: no-repeat;
+  height: auto;
 }
+
+// @include media-breakpoint-up(md) {
+//   body {
+//     height: 100vh;
+//   }
+// }

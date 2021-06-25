@@ -32,6 +32,7 @@ export class MoneyTransferComponent implements OnInit {
   get transferFormFields() {
     return this.transferForm.controls;
   }
+
   openModal() {
     this.modalRef = this.modalService.show(this.modelContent);
   }

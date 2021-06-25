@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { TransactionListItemComponent } from './component/transaction-list-item/transaction-list-item.component';
 import { LoaderComponent } from './component/loader/loader.component';
 import { QueryFilterPipe } from './common/pipes/query-filter.pipe';
+import { AmountValidatorDirective } from './common/directive/amount-validator/amount-validator.directive';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { QueryFilterPipe } from './common/pipes/query-filter.pipe';
     TransactionListItemComponent,
     LoaderComponent,
     QueryFilterPipe,
+    AmountValidatorDirective,
   ],
   imports: [
     CommonModule,

@@ -21,8 +21,16 @@ export class TransactionService {
   }
 
   loadTransferHistory() {
+    const options = {
+      headers: {
+        'Content-Type':  'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,POST,DELETE,PUT,PATCH,OPTIONS",
+        "Access-Control-Allow-Headers": "Origin,ConTent-Type,X-Auth-Token,Accept,Access-Control-Request-Method"
+      }
+    }
     return this.http
-      .get<Transactions>(environment.apiUrl)
+      .get<Transactions>(environment.apiUrl, options)
       .pipe(
         map((response) => response.data),
         catchError(() => {

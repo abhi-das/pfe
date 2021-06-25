@@ -48,7 +48,7 @@
               {
                 "input": "libs/lib-bb-ui/src/assets",
                 "glob": "**/*",
-                "output": "assets/lib-bb-ui"
+                "output": "assets/"
               }
             ],
             "styles": [
