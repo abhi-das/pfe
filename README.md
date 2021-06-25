@@ -8,11 +8,12 @@
 - Custom Directive and Pipes implementation
 - Typescript
 - SCSS Support
-- Mobile First Approach
+- LineIcon Support
 - CI/CD with Github Actions
 - AWS S3 Integration Enabled
 - Jest Test cases (It's ready, yet to add more testcases)
 - Cypress E2E Support (It's ready, yet to add more testcases)
+- Mobile First Approach
 - Prettier
 - eslint
 - Single Responsibility Principles Implementation
