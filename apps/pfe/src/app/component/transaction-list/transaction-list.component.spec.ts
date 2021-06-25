@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
+import { QueryFilterPipe } from '../../common/pipes/query-filter/query-filter.pipe';
 import { PfeNgxModule } from '../../pfe-ngx/pfe-ngx.module';
 import { TransactionService } from '../../services/transfer.service';
 
@@ -19,7 +20,7 @@ describe('TransactionListComponent', () => {
         LibBbUiModule,
         HttpClientModule
       ],
-      declarations: [TransactionListComponent],
+      declarations: [QueryFilterPipe, TransactionListComponent],
       providers: [TransactionService]
     }).compileComponents();
   });

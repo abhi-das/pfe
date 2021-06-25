@@ -1,8 +1,8 @@
-import { RemovecommaPipe } from './removecomma.pipe';
+import { RemoveCommaPipe } from './remove-comma.pipe';
 
 describe('RemovecommaPipe', () => {
   it('create an instance', () => {
-    const pipe = new RemovecommaPipe();
+    const pipe = new RemoveCommaPipe();
     expect(pipe).toBeTruthy();
   });
 });

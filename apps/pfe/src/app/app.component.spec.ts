@@ -11,6 +11,9 @@ import { TransactionService } from './services/transfer.service';
 import { CommonModule } from '@angular/common';
 import { PfeNgxModule } from './pfe-ngx/pfe-ngx.module';
 import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
+import { AmountValidatorDirective } from './common/directive/amount-validator/amount-validator.directive';
+import { RemoveCommaPipe } from './common/pipes/remove-comma/remove-comma.pipe';
+import { PipesModule } from './common/pipes/pipes.module';
 
 
 describe('AppComponent', () => {
@@ -27,12 +30,15 @@ describe('AppComponent', () => {
         ReactiveFormsModule,
         HttpClientModule,
         LibBbUiModule,
+        PipesModule
       ],
       declarations: [
         AppComponent,
         HeaderComponent,
         MoneyTransferComponent,
         TransactionListComponent,
+        AmountValidatorDirective,
+        RemoveCommaPipe,
       ],
       providers: [TransactionService]
     }).compileComponents();

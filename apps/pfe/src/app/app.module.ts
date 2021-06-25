@@ -12,9 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { TransactionListItemComponent } from './component/transaction-list-item/transaction-list-item.component';
 import { LoaderComponent } from './component/loader/loader.component';
-import { QueryFilterPipe } from './common/pipes/query-filter.pipe';
 import { AmountValidatorDirective } from './common/directive/amount-validator/amount-validator.directive';
-import { RemovecommaPipe } from './common/pipes/removecomma.pipe';
+import { PipesModule } from './common/pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -24,9 +23,7 @@ import { RemovecommaPipe } from './common/pipes/removecomma.pipe';
     TransactionListComponent,
     TransactionListItemComponent,
     LoaderComponent,
-    QueryFilterPipe,
     AmountValidatorDirective,
-    RemovecommaPipe,
   ],
   imports: [
     CommonModule,
@@ -34,9 +31,11 @@ import { RemovecommaPipe } from './common/pipes/removecomma.pipe';
     ReactiveFormsModule,
     PfeNgxModule,
     LibBbUiModule,
-    HttpClientModule
+    HttpClientModule,
+    PipesModule
   ],
   providers: [TransactionService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}
