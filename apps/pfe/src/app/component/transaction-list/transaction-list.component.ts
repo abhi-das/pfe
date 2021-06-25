@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { TransactionEntry } from '../../models/transaction.model';
@@ -9,6 +9,7 @@ import { sortByDesc } from '../../utils/helper';
   selector: 'pfe-transaction-list',
   templateUrl: './transaction-list.component.html',
   styleUrls: ['./transaction-list.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TransactionListComponent implements OnInit, OnDestroy {
   transactionList: TransactionEntry[];

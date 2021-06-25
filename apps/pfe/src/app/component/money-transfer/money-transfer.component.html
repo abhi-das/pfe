@@ -9,7 +9,7 @@
         <label class="mb-2" for="from-account">From Account</label>
         <input
           type="text"
-          class="form-control"
+          class="form-control text-dark"
           id="from-account"
           placeholder="My Personal Account: € {{accountBalance | number: '1.2-2' | removecomma }}"
           aria-label="my personal account"
@@ -43,7 +43,7 @@
       <div class="form-group mb-2">
         <label class="mb-2" for="to-account">Account</label>
         <div class="input-group">
-          <span class="input-group-text">€</span>
+          <span class="input-group-text text-dark">€</span>
           <input
             type="text"
             class="form-control fst-italic"
@@ -73,7 +73,7 @@
           </p>
         </div>
       </div>
-      <div class="float-end mt-3">
+      <div class="float-end mt-3 btn-submit">
         <pfe-submit-button
           (submitForm)="onTransferFormSubmit()"
         ></pfe-submit-button>
@@ -101,7 +101,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn" (click)="modalRef.hide()">Close</button>
-    <button type="button" class="btn btn-warning" (click)="onTransferSubmit()">
+    <button type="button" class="btn background-brown-dark" (click)="onTransferSubmit()">
       Send Transfer
     </button>
   </div>

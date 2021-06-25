@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -6,13 +6,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { TransactionEntry } from '../../models/transaction.model';
 import { TransactionService } from '../../services/transfer.service';
 
 @Component({
   selector: 'pfe-money-transfer',
   templateUrl: './money-transfer.component.html',
   styleUrls: ['./money-transfer.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MoneyTransferComponent implements OnInit {
   modalRef: BsModalRef;
@@ -54,22 +54,12 @@ export class MoneyTransferComponent implements OnInit {
     );
   }
   onTransferSubmit() {
-
-    const recentTransactionDetail = {
-      dates: {
-        valueDate: Number(new Date().toLocaleString()),
-      },
-      transaction: {
-        amountCurrency: {
-          amount: Number(this.transferFormFields.amount.value)
-        }
-      },
-      merchant: {
-        name: this.transferFormFields.toAccount.value
-      }
-    }  as TransactionEntry;
-
-    this.trsHistorySrv.addRecentTransaction(recentTransactionDetail);
+    const userTransactionInfo = {
+      valueDate: Number(new Date().getTime()),
+      amount: Number(this.transferFormFields.amount.value),
+      name: this.transferFormFields.toAccount.value
+    };
+    this.trsHistorySrv.addRecentTransaction(userTransactionInfo);
     this.onReset();
     this.modalRef.hide();
   }

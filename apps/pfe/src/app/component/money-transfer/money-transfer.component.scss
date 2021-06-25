@@ -1,3 +1,11 @@
+@import '../../../styles/pfe-variables';
+
 .error {
   font-size: 0.8rem;
+}
+.btn-submit {
+  .btn-primary {
+    background: $clDrak;
+    border-color: $clLight;
+  }
 }

@@ -4,9 +4,16 @@ import { TransactionEntry, Transactions } from '../models/transaction.model';
 import { map, catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { sortByDesc } from '../utils/helper';
 
 export interface ErrTemp {
   message: string;
+}
+
+export interface UserTransactionInfo {
+  valueDate: number;
+  amount: number;
+  name: string;
 }
 
 @Injectable({
@@ -43,11 +50,31 @@ export class TransactionService {
   getTransactionHistory(): Observable<TransactionEntry[]> {
     return this.transactions;
   }
-  addRecentTransaction(rTransaction: Partial<TransactionEntry>) {
-    const recentTra: TransactionEntry = {
-      ...this.transSubject.getValue()[0],
-      ...rTransaction
-    };
-    this.transSubject.next(this.transSubject.getValue()?.concat(recentTra));
+  createTransaction(transInfo: UserTransactionInfo):TransactionEntry {
+    return {
+      categoryCode: "#d51271",
+      dates: {
+        valueDate: transInfo.valueDate
+      },
+      transaction: {
+        amountCurrency: {
+          amount: transInfo.amount,
+          currencyCode: "EUR"
+        },
+        type: "Card Payment",
+        creditDebitIndicator: "DBIT"
+      },
+      merchant: {
+        name: transInfo.name,
+        accountNumber: "SI64397745065188826"
+      }
+    }
+  }
+  addRecentTransaction(userTransactionInfo: UserTransactionInfo) {
+    const newCopy = [
+      ...this.transSubject.getValue(),
+      this.createTransaction(userTransactionInfo)
+    ].sort(sortByDesc);
+    this.transSubject.next(newCopy);
   }
 }
