@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TransactionEntry, Transactions } from '../models/transaction.model';
 import { map, catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
@@ -21,16 +21,16 @@ export class TransactionService {
   }
 
   loadTransferHistory() {
-    const options = {
-      headers: {
-        'Content-Type':  'application/json',
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,POST,DELETE,PUT,PATCH,OPTIONS",
-        "Access-Control-Allow-Headers": "Origin,ConTent-Type,X-Auth-Token,Accept,Access-Control-Request-Method"
-      }
-    }
+
+    const headers = new HttpHeaders()
+    .set("Content-Type", "application/json; charset=UTF-8")
+    .set("Access-Control-Allow-Origin", '*')
+    .set("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, X-Requested-With, Accept")
+    .set("Access-Control-Allow-Methods", "GET")
+    .set("Access-Control-Allow-Credentials", "true")
+
     return this.http
-      .get<Transactions>(environment.apiUrl, options)
+      .get<Transactions>(environment.apiUrl, { headers })
       .pipe(
         map((response) => response.data),
         catchError(() => {
