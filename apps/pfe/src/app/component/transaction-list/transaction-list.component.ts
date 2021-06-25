@@ -3,6 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { TransactionEntry } from '../../models/transaction.model';
 import { TransactionService } from '../../services/transfer.service';
+import { sortByDesc } from '../../utils/helper';
 
 @Component({
   selector: 'pfe-transaction-list',
@@ -23,7 +24,15 @@ export class TransactionListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.transactionListItm = this.trsHistorySrv.getTransactionHistory().pipe(tap(() => this.isLoading = false));
+    this.transactionListItm = this.trsHistorySrv.getTransactionHistory()
+    .pipe(
+      tap((res) => {
+        if(res.length) {
+          res.sort(sortByDesc)
+        }
+        this.isLoading = false;
+      })
+    )
   }
   filterHistory(event: any) {
     this.query = event.currentTarget.value;

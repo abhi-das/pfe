@@ -1,6 +1,7 @@
 import { Directive } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, Validator } from '@angular/forms';
-import { amountRegex } from '../../validation-rules';
+import { amountRegex } from '../../../utils/validation-rules';
+
 
 @Directive({
   selector: '[pfeAmountValidator]',
