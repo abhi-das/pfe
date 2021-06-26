@@ -18,6 +18,7 @@ describe('TransferService', () => {
     });
     service = TestBed.get(TransactionService);
   });
+
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
@@ -61,15 +62,14 @@ describe('TransferService', () => {
       }
     ];
 
+    // service.getTransactionHistory().subscribe(ps => {
+    //   expect(ps).toEqual([]);
+    //   expect(ps.length).toBe(0);
+    // });
+
     httpMock = TestBed.get(HttpTestingController);
     const httpReq = httpMock.expectOne(environment.apiUrl);
     expect(httpReq.request.method).toBe('GET');
-
-    // service.getTransactionHistory().subscribe(ps => {
-    //   expect(ps.length).toBe(4);
-    //   expect(ps).toEqual(trans);
-    // });
-
     httpReq.flush(trans);
     httpMock.verify();
   })

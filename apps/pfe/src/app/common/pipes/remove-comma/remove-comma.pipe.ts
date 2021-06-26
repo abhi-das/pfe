@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class RemoveCommaPipe implements PipeTransform {
 
-  transform(value: (number | string | null)): (string | number | null) {
+  transform(value: (string | null)): (string | null) {
     // if value is not undefined or null replace comma with empty string
     if(value) {
       return value.toString().replace(/,/g, "");
