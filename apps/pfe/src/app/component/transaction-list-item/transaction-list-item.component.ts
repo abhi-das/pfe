@@ -13,4 +13,7 @@ export class TransactionListItemComponent {
   isBalanceBelowZero(amount: number): boolean {
     return amount < 0;
   }
+  trackByDate(index: number, historyItem: TransactionEntry) {
+    return historyItem ? historyItem.dates.valueDate : undefined;
+  }
 }

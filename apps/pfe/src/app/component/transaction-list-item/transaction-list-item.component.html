@@ -1,4 +1,4 @@
-<div class="transaction-item p-0" *ngFor="let historyItem of transactionItem">
+<div class="transaction-item p-0" *ngFor="let historyItem of transactionItem; trackBy: trackByDate">
       <div
         class="d-flex list-item align-items-center border-start border-5 px-2 py-3 my-2"
         [ngClass]="
