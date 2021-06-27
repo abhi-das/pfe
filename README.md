@@ -8,6 +8,7 @@
 - Custom Directive and Pipes implementation
 - Typescript
 - SCSS Support
+- Bootstrap and ngx-bootstrap implementation
 - LineIcon Support
 - CI/CD with Github Actions
 - AWS S3 Integration Enabled
