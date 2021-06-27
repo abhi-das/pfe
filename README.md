@@ -1,6 +1,6 @@
 # Peach Bank Application
 
-- [Demo] - Not ready yet
+- [Demo](http://pfe-dashboard.s3-website.us-east-2.amazonaws.com)
 
 ## Feature tags
 
