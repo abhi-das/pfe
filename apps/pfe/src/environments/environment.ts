@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "./assets/mock-data/transactions.json"
+  apiUrl: "https://test-demo-6dd40-default-rtdb.firebaseio.com/transactions.json"
 };
 
 /*
