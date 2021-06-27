@@ -1,4 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
@@ -21,7 +22,8 @@ describe('MoneyTransferComponent', () => {
         HttpClientTestingModule
       ],
       declarations: [RemoveCommaPipe, MoneyTransferComponent],
-      providers: [BsModalRef, BsModalService, FormBuilder]
+      providers: [BsModalRef, BsModalService, FormBuilder],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   });
 

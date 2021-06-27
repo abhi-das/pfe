@@ -14,6 +14,7 @@ import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
 import { AmountValidatorDirective } from './common/directive/amount-validator/amount-validator.directive';
 import { RemoveCommaPipe } from './common/pipes/remove-comma/remove-comma.pipe';
 import { PipesModule } from './common/pipes/pipes.module';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 describe('AppComponent', () => {
@@ -40,7 +41,8 @@ describe('AppComponent', () => {
         AmountValidatorDirective,
         RemoveCommaPipe,
       ],
-      providers: [TransactionService]
+      providers: [TransactionService],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   });
 

@@ -1,4 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
@@ -21,7 +22,8 @@ describe('TransactionListComponent', () => {
         HttpClientModule
       ],
       declarations: [QueryFilterPipe, TransactionListComponent],
-      providers: [TransactionService]
+      providers: [TransactionService],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   });
 
