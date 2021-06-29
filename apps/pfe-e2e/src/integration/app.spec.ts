@@ -1,13 +1,15 @@
-import { getGreeting } from '../support/app.po';
 
 describe('pfe', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
-
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Peach Bank - Home!');
+    cy.visit('/');
+    cy.contains('Frontend Technical Assignment')
   });
+  it('should transfer money', () => {
+    cy.get('#to-account').type('Ellit')
+    cy.get('#amount').type('2500')
+    cy.get('.btn-primary').click();
+    cy.get('.background-brown-dark').click();
+  })
 });
