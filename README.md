@@ -13,7 +13,7 @@
 - CI/CD with Github Actions
 - AWS S3 Integration Enabled
 - Jest Test cases (Can be added more scenarios)
-- Cypress E2E Support (It's ready, yet to add more testcases)
+- Complete Application Walk through using Cypress E2E Tests
 - Mobile First Approach
 - Prettier
 - eslint
