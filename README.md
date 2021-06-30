@@ -19,7 +19,7 @@
 - eslint
 - Single Responsibility Principles Implementation
 - Mono Repo Support
-- Storybook Support (Not ready to be yet)
+- Storybook Support (Not ready yet)
 
 ## Installation
 
