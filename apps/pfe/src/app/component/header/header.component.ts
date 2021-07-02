@@ -4,6 +4,5 @@ import { Component, ViewEncapsulation } from '@angular/core';
   selector: 'pfe-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent {}

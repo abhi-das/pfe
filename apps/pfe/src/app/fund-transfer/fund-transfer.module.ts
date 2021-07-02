@@ -39,7 +39,8 @@ const fundTransferRouters: Routes = [
     PipesModule,
     ReactiveFormsModule,
   ],
-  exports: [TransferComponent, RouterModule],
+  exports: [TransferComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class FundTransferModule {
   static forRoot(): ModuleWithProviders<FundTransferModule> {

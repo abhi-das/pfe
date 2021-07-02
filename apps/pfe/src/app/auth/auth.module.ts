@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -13,6 +13,7 @@ const authRoutes: Routes = [
 @NgModule({
   declarations: [LoginComponent],
   imports: [CommonModule, RouterModule.forChild(authRoutes)],
-  exports: [LoginComponent, RouterModule],
+  exports: [LoginComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AuthModule {}
