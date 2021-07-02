@@ -7,25 +7,29 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
+import { appStore } from './store/reducers';
+import { AuthGuardService } from './auth/services/auth.guard.service';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthModule } from './auth/auth.module';
 
 const routes: Routes = [
-  {
-    path: 'auth',
-    loadChildren: () =>
-      import('./auth/auth.module').then((mod) => mod.AuthModule),
-  },
+  // {
+  //   path: 'auth',
+  //   loadChildren: () =>
+  //     import('./auth/auth.module').then((mod) => mod.AuthModule),
+  // },
   {
     path: 'transfer',
     loadChildren: () =>
       import('./fund-transfer/fund-transfer.module').then(
         (mod) => mod.FundTransferModule
       ),
+    canActivate: [AuthGuardService],
   },
   {
     path: '',
-    redirectTo: '/auth',
+    redirectTo: '',
     pathMatch: 'full',
   },
 ];
@@ -37,11 +41,13 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes, { enableTracing: false }),
     BrowserModule,
-    StoreModule.forRoot({}, {}),
+    AuthModule,
+    StoreModule.forRoot(appStore.appReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
+    EffectsModule.forRoot([]),
   ],
   bootstrap: [AppComponent],
   providers: [],

@@ -14,6 +14,8 @@ import { AmountValidatorDirective } from '../common/directive/amount-validator/a
 import { TransactionService } from '../services/transfer.service';
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { transferStore } from '../store/reducers';
 
 const fundTransferRouters: Routes = [
   {
@@ -38,6 +40,7 @@ const fundTransferRouters: Routes = [
     HttpClientModule,
     PipesModule,
     ReactiveFormsModule,
+    StoreModule.forFeature('transfer', transferStore.transferReducers),
   ],
   exports: [TransferComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

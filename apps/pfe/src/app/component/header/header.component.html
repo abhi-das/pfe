@@ -5,8 +5,31 @@
     </a>
     <p class="mt-0 mb-0 text-primary">
       Frontend <strong>Technical Assignment</strong>
-      <button type="button" class="btn" [routerLink]="['auth']">Sign-in</button>
-      <button type="button" class="btn" [routerLink]="['transfer']">
+      <button
+        *ngIf="isLoggedIn | async"
+        type="button"
+        class="btn"
+        [routerLink]="['']"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Sign-in
+      </button>
+      <button
+        *ngIf="isLoggedOut | async"
+        type="button"
+        class="btn"
+        (click)="onSignOut()"
+      >
+        Sign-out
+      </button>
+      <button
+        type="button"
+        class="btn"
+        [routerLink]="['transfer']"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
         Fund Transfer
       </button>
     </p>

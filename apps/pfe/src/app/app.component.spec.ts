@@ -15,6 +15,12 @@ import { AmountValidatorDirective } from './common/directive/amount-validator/am
 import { RemoveCommaPipe } from './common/pipes/remove-comma/remove-comma.pipe';
 import { PipesModule } from './common/pipes/pipes.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AuthModule } from './auth/auth.module';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { environment } from '../environments/environment';
+import { appStore } from './store/reducers';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -31,6 +37,13 @@ describe('AppComponent', () => {
         HttpClientModule,
         LibBbUiModule,
         PipesModule,
+        AuthModule,
+        StoreModule.forRoot(appStore.appReducer),
+        StoreDevtoolsModule.instrument({
+          maxAge: 25,
+          logOnly: environment.production,
+        }),
+        EffectsModule.forRoot([]),
       ],
       declarations: [
         AppComponent,
