@@ -1,124 +1,122 @@
 import { sortByDesc } from './helper';
 
 describe('Test Helper methods', () => {
-
   const tList = [
     {
-    categoryCode: "#d51271",
+      categoryCode: '#d51271',
       dates: {
-        valueDate: 99
+        valueDate: 99,
       },
       transaction: {
         amountCurrency: {
           amount: 121.22,
-          currencyCode: "EUR"
+          currencyCode: 'EUR',
         },
-        type: "Card Payment",
-        creditDebitIndicator: "DBIT"
+        type: 'Card Payment',
+        creditDebitIndicator: 'DBIT',
       },
       merchant: {
-        name: "Belly",
-        accountNumber: "SI64397745065188826"
-      }
+        name: 'Belly',
+        accountNumber: 'SI64397745065188826',
+      },
     },
     {
-      categoryCode: "#d51271",
-        dates: {
-          valueDate: 100
+      categoryCode: '#d51271',
+      dates: {
+        valueDate: 100,
+      },
+      transaction: {
+        amountCurrency: {
+          amount: 121.22,
+          currencyCode: 'EUR',
         },
-        transaction: {
-          amountCurrency: {
-            amount: 121.22,
-            currencyCode: "EUR"
-          },
-          type: "Card Payment",
-          creditDebitIndicator: "DBIT"
-        },
-        merchant: {
-          name: "Milan",
-          accountNumber: "SI64397745065188826"
-        }
+        type: 'Card Payment',
+        creditDebitIndicator: 'DBIT',
+      },
+      merchant: {
+        name: 'Milan',
+        accountNumber: 'SI64397745065188826',
+      },
     },
     {
-      categoryCode: "#d51271",
-        dates: {
-          valueDate: 98
+      categoryCode: '#d51271',
+      dates: {
+        valueDate: 98,
+      },
+      transaction: {
+        amountCurrency: {
+          amount: 121.22,
+          currencyCode: 'EUR',
         },
-        transaction: {
-          amountCurrency: {
-            amount: 121.22,
-            currencyCode: "EUR"
-          },
-          type: "Card Payment",
-          creditDebitIndicator: "DBIT"
-        },
-        merchant: {
-          name: "Alison",
-          accountNumber: "SI64397745065188826"
-        }
-    }
+        type: 'Card Payment',
+        creditDebitIndicator: 'DBIT',
+      },
+      merchant: {
+        name: 'Alison',
+        accountNumber: 'SI64397745065188826',
+      },
+    },
   ];
 
   const expectList = [
     {
-      categoryCode: "#d51271",
-        dates: {
-          valueDate: 100
-        },
-        transaction: {
-          amountCurrency: {
-            amount: 121.22,
-            currencyCode: "EUR"
-          },
-          type: "Card Payment",
-          creditDebitIndicator: "DBIT"
-        },
-        merchant: {
-          name: "Milan",
-          accountNumber: "SI64397745065188826"
-        }
-    },
-    {
-    categoryCode: "#d51271",
+      categoryCode: '#d51271',
       dates: {
-        valueDate: 99
+        valueDate: 100,
       },
       transaction: {
         amountCurrency: {
           amount: 121.22,
-          currencyCode: "EUR"
+          currencyCode: 'EUR',
         },
-        type: "Card Payment",
-        creditDebitIndicator: "DBIT"
+        type: 'Card Payment',
+        creditDebitIndicator: 'DBIT',
       },
       merchant: {
-        name: "Belly",
-        accountNumber: "SI64397745065188826"
-      }
+        name: 'Milan',
+        accountNumber: 'SI64397745065188826',
+      },
     },
     {
-      categoryCode: "#d51271",
-        dates: {
-          valueDate: 98
+      categoryCode: '#d51271',
+      dates: {
+        valueDate: 99,
+      },
+      transaction: {
+        amountCurrency: {
+          amount: 121.22,
+          currencyCode: 'EUR',
         },
-        transaction: {
-          amountCurrency: {
-            amount: 121.22,
-            currencyCode: "EUR"
-          },
-          type: "Card Payment",
-          creditDebitIndicator: "DBIT"
+        type: 'Card Payment',
+        creditDebitIndicator: 'DBIT',
+      },
+      merchant: {
+        name: 'Belly',
+        accountNumber: 'SI64397745065188826',
+      },
+    },
+    {
+      categoryCode: '#d51271',
+      dates: {
+        valueDate: 98,
+      },
+      transaction: {
+        amountCurrency: {
+          amount: 121.22,
+          currencyCode: 'EUR',
         },
-        merchant: {
-          name: "Alison",
-          accountNumber: "SI64397745065188826"
-        }
-    }
+        type: 'Card Payment',
+        creditDebitIndicator: 'DBIT',
+      },
+      merchant: {
+        name: 'Alison',
+        accountNumber: 'SI64397745065188826',
+      },
+    },
   ];
 
   test('Match array using custom sortByDesc method', () => {
     const newCopy = tList.sort(sortByDesc);
-    expect(newCopy).toEqual(expectList)
+    expect(newCopy).toEqual(expectList);
   });
-
-})
+});

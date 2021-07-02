@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://test-demo-6dd40-default-rtdb.firebaseio.com/transactions.json"
+  apiUrl:
+    'https://test-demo-6dd40-default-rtdb.firebaseio.com/transactions.json',
 };
 
 /*

@@ -16,7 +16,6 @@ import { RemoveCommaPipe } from './common/pipes/remove-comma/remove-comma.pipe';
 import { PipesModule } from './common/pipes/pipes.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
@@ -31,7 +30,7 @@ describe('AppComponent', () => {
         ReactiveFormsModule,
         HttpClientModule,
         LibBbUiModule,
-        PipesModule
+        PipesModule,
       ],
       declarations: [
         AppComponent,
@@ -42,7 +41,7 @@ describe('AppComponent', () => {
         RemoveCommaPipe,
       ],
       providers: [TransactionService],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 

@@ -7,10 +7,12 @@
     <ng-container *ngIf="transactionListItm | async">
       <pfe-filter (inputChange)="filterHistory($event)"></pfe-filter>
       <div class="transaction-history_scrollable mt-3 pe-3 overflow-auto">
-        <pfe-transaction-list-item [transactionItem]="transactionListItm | async | queryFilter: query"></pfe-transaction-list-item>
+        <pfe-transaction-list-item
+          [transactionItem]="transactionListItm | async | queryFilter: query"
+        ></pfe-transaction-list-item>
       </div>
     </ng-container>
-    <ng-container *ngIf="isLoading" >
+    <ng-container *ngIf="isLoading">
       <div class="text-center">
         <pfe-loader></pfe-loader>
       </div>

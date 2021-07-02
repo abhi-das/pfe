@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 
 import { TransactionService } from './transfer.service';
 import { TransactionEntry } from '../models/transaction.model';
@@ -11,10 +14,8 @@ describe('TransferService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule],
-      providers: [
-        TransactionService
-      ]
+      imports: [HttpClientTestingModule],
+      providers: [TransactionService],
     });
     service = TestBed.get(TransactionService);
   });
@@ -22,44 +23,44 @@ describe('TransferService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-  it("Should get transaction histories", () => {
+  it('Should get transaction histories', () => {
     const trans: TransactionEntry[] = [
       {
-        "categoryCode": "#12a580",
-        "dates": {
-          "valueDate": 1600493600000
+        categoryCode: '#12a580',
+        dates: {
+          valueDate: 1600493600000,
         },
-        "transaction": {
-          "amountCurrency": {
-            "amount": -500,
-            "currencyCode": "EUR"
+        transaction: {
+          amountCurrency: {
+            amount: -500,
+            currencyCode: 'EUR',
           },
-          "type": "Salaries",
-          "creditDebitIndicator": "CRDT"
+          type: 'Salaries',
+          creditDebitIndicator: 'CRDT',
         },
-        "merchant": {
-          "name": "Backbase",
-          "accountNumber": "SI64397745065188826"
-        }
+        merchant: {
+          name: 'Backbase',
+          accountNumber: 'SI64397745065188826',
+        },
       },
       {
-        "categoryCode": "#12a580",
-        "dates": {
-          "valueDate": 1600387200000
+        categoryCode: '#12a580',
+        dates: {
+          valueDate: 1600387200000,
         },
-        "transaction": {
-          "amountCurrency": {
-            "amount": 82.02,
-            "currencyCode": "EUR"
+        transaction: {
+          amountCurrency: {
+            amount: 82.02,
+            currencyCode: 'EUR',
           },
-          "type": "Card Payment",
-          "creditDebitIndicator": "DBIT"
+          type: 'Card Payment',
+          creditDebitIndicator: 'DBIT',
         },
-        "merchant": {
-          "name": "The Tea Lounge",
-          "accountNumber": "SI64397745065188826"
-        }
-      }
+        merchant: {
+          name: 'The Tea Lounge',
+          accountNumber: 'SI64397745065188826',
+        },
+      },
     ];
 
     // service.getTransactionHistory().subscribe(ps => {
@@ -72,5 +73,5 @@ describe('TransferService', () => {
     expect(httpReq.request.method).toBe('GET');
     httpReq.flush(trans);
     httpMock.verify();
-  })
+  });
 });

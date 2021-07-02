@@ -17,8 +17,9 @@ import { ModuleWithProviders } from '@angular/core';
 
 const fundTransferRouters: Routes = [
   {
-    path: '', component: TransferComponent
-  }
+    path: '',
+    component: TransferComponent,
+  },
 ];
 @NgModule({
   declarations: [
@@ -38,18 +39,13 @@ const fundTransferRouters: Routes = [
     PipesModule,
     ReactiveFormsModule,
   ],
-  exports: [
-    TransferComponent,
-    RouterModule
-  ]
+  exports: [TransferComponent, RouterModule],
 })
 export class FundTransferModule {
   static forRoot(): ModuleWithProviders<FundTransferModule> {
     return {
       ngModule: FundTransferModule,
-      providers: [
-        TransactionService
-      ]
-    }
+      providers: [TransactionService],
+    };
   }
 }

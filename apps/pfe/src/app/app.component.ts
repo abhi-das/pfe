@@ -10,8 +10,10 @@ export class AppComponent {
   // Add HTML Page Title and Meta tags  according to page content
   title = 'Peach Bank - Home';
   constructor(private pageTitle: Title, private pageMeta: Meta) {
-    this.pageTitle.setTitle("Peach Banking Application");
-    this.pageMeta.addTag( {name : "description",
-    content: "The best banking facility, online banking."})
+    this.pageTitle.setTitle('Peach Banking Application');
+    this.pageMeta.addTag({
+      name: 'description',
+      content: 'The best banking facility, online banking.',
+    });
   }
 }

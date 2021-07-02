@@ -13,32 +13,38 @@ import { HttpClientModule } from '@angular/common/http';
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(mod => mod.AuthModule)
+    loadChildren: () =>
+      import('./auth/auth.module').then((mod) => mod.AuthModule),
   },
   {
     path: 'transfer',
-    loadChildren: () => import("./fund-transfer/fund-transfer.module").then(mod => mod.FundTransferModule)
+    loadChildren: () =>
+      import('./fund-transfer/fund-transfer.module').then(
+        (mod) => mod.FundTransferModule
+      ),
   },
   {
-    path: '', redirectTo: '/auth', pathMatch: 'full'
+    path: '',
+    redirectTo: '/auth',
+    pathMatch: 'full',
   },
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-  ],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     CommonModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, { enableTracing: true }),
+    RouterModule.forRoot(routes, { enableTracing: false }),
     BrowserModule,
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   bootstrap: [AppComponent],
   providers: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

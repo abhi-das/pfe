@@ -19,11 +19,11 @@ describe('TransactionListComponent', () => {
         ReactiveFormsModule,
         PfeNgxModule,
         LibBbUiModule,
-        HttpClientModule
+        HttpClientModule,
       ],
       declarations: [QueryFilterPipe, TransactionListComponent],
       providers: [TransactionService],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 

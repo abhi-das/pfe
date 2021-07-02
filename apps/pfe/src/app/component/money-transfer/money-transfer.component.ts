@@ -1,4 +1,10 @@
-import { Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -12,7 +18,7 @@ import { TransactionService } from '../../services/transfer.service';
   selector: 'pfe-money-transfer',
   templateUrl: './money-transfer.component.html',
   styleUrls: ['./money-transfer.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MoneyTransferComponent implements OnInit {
   modalRef: BsModalRef;
@@ -20,7 +26,11 @@ export class MoneyTransferComponent implements OnInit {
   transferForm: FormGroup;
   isTransferFormSubmitted = false;
   accountBalance: number;
-  constructor(private modalService: BsModalService, private fb: FormBuilder, private trsHistorySrv: TransactionService) {}
+  constructor(
+    private modalService: BsModalService,
+    private fb: FormBuilder,
+    private trsHistorySrv: TransactionService
+  ) {}
 
   ngOnInit(): void {
     this.accountBalance = 5824.7625;
@@ -57,7 +67,7 @@ export class MoneyTransferComponent implements OnInit {
     const userTransactionInfo = {
       valueDate: Number(new Date().getTime()),
       amount: Number(this.transferFormFields.amount.value),
-      name: this.transferFormFields.toAccount.value
+      name: this.transferFormFields.toAccount.value,
     };
     this.trsHistorySrv.addRecentTransaction(userTransactionInfo);
     this.onReset();

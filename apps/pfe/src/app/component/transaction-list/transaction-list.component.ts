@@ -9,7 +9,7 @@ import { sortByDesc } from '../../utils/helper';
   selector: 'pfe-transaction-list',
   templateUrl: './transaction-list.component.html',
   styleUrls: ['./transaction-list.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class TransactionListComponent implements OnInit {
   transactionList: TransactionEntry[];
@@ -22,15 +22,14 @@ export class TransactionListComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.transactionListItm = this.trsHistorySrv.getTransactionHistory()
-    .pipe(
+    this.transactionListItm = this.trsHistorySrv.getTransactionHistory().pipe(
       tap((res) => {
-        if(res.length) {
-          res.sort(sortByDesc)
+        if (res.length) {
+          res.sort(sortByDesc);
         }
         this.isLoading = false;
       })
-    )
+    );
   }
   filterHistory(event: any) {
     this.query = event.currentTarget.value;

@@ -5,11 +5,10 @@ import { TransactionEntry } from '../../models/transaction.model';
   selector: 'pfe-transaction-list-item',
   templateUrl: './transaction-list-item.component.html',
   styleUrls: ['./transaction-list-item.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class TransactionListItemComponent {
-
-  @Input() transactionItem: Array<TransactionEntry>
+  @Input() transactionItem: Array<TransactionEntry>;
   isBalanceBelowZero(amount: number): boolean {
     return amount < 0;
   }

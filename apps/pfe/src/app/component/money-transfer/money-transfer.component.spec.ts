@@ -19,11 +19,11 @@ describe('MoneyTransferComponent', () => {
         ReactiveFormsModule,
         PfeNgxModule,
         LibBbUiModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       declarations: [RemoveCommaPipe, MoneyTransferComponent],
       providers: [BsModalRef, BsModalService, FormBuilder],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
@@ -38,29 +38,22 @@ describe('MoneyTransferComponent', () => {
   });
 
   it('On Form submission - Valid', () => {
-
-    component.transferForm.controls['toAccount'].setValue("user name");
-    component.transferForm.controls['amount'].setValue("10000");
+    component.transferForm.controls['toAccount'].setValue('user name');
+    component.transferForm.controls['amount'].setValue('10000');
     component.onTransferFormSubmit();
     expect(component.transferForm.invalid).toBe(false);
-
   });
   it('On Form submission - Invalid', () => {
-
-    component.transferForm.controls['toAccount'].setValue("");
-    component.transferForm.controls['amount'].setValue("10000");
+    component.transferForm.controls['toAccount'].setValue('');
+    component.transferForm.controls['amount'].setValue('10000');
     component.onTransferFormSubmit();
     expect(component.transferForm.valid).toBe(false);
-
   });
 
   it('On Form reset - falsy', () => {
-
-    component.transferForm.controls['toAccount'].setValue("user name");
-    component.transferForm.controls['amount'].setValue("10000");
+    component.transferForm.controls['toAccount'].setValue('user name');
+    component.transferForm.controls['amount'].setValue('10000');
     component.transferForm.reset();
-    expect(component.transferForm.get("toAccount")?.valid).toBeFalsy()
-
+    expect(component.transferForm.get('toAccount')?.valid).toBeFalsy();
   });
-
 });

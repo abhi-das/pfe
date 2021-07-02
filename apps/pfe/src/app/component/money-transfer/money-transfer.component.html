@@ -11,7 +11,9 @@
           type="text"
           class="form-control text-dark"
           id="from-account"
-          placeholder="My Personal Account: € {{accountBalance | number: '1.2-2' | removecomma }}"
+          placeholder="My Personal Account: € {{
+            accountBalance | number: '1.2-2' | removecomma
+          }}"
           aria-label="my personal account"
           disabled
         />
@@ -102,7 +104,11 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn" (click)="modalRef.hide()">Close</button>
-    <button type="button" class="btn background-brown-dark" (click)="onTransferSubmit()">
+    <button
+      type="button"
+      class="btn background-brown-dark"
+      (click)="onTransferSubmit()"
+    >
       Send Transfer
     </button>
   </div>
