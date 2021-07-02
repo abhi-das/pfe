@@ -1,41 +1,44 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
 import { AppComponent } from './app.component';
-import { PfeNgxModule } from './pfe-ngx/pfe-ngx.module';
-import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './component/header/header.component';
-import { MoneyTransferComponent } from './component/money-transfer/money-transfer.component';
-import { TransactionListComponent } from './component/transaction-list/transaction-list.component';
-import { TransactionService } from './services/transfer.service';
-import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { TransactionListItemComponent } from './component/transaction-list-item/transaction-list-item.component';
-import { LoaderComponent } from './component/loader/loader.component';
-import { AmountValidatorDirective } from './common/directive/amount-validator/amount-validator.directive';
-import { PipesModule } from './common/pipes/pipes.module';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthModule } from './auth/auth.module';
+import { HttpClientModule } from '@angular/common/http';
+
+const routes: Routes = [
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(mod => mod.AuthModule)
+  },
+  {
+    path: 'transfer',
+    loadChildren: () => import("./fund-transfer/fund-transfer.module").then(mod => mod.FundTransferModule)
+  },
+  {
+    path: '', redirectTo: '/auth', pathMatch: 'full'
+  },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    MoneyTransferComponent,
-    TransactionListComponent,
-    TransactionListItemComponent,
-    LoaderComponent,
-    AmountValidatorDirective,
   ],
   imports: [
     CommonModule,
-    BrowserModule,
-    ReactiveFormsModule,
-    PfeNgxModule,
-    LibBbUiModule,
     HttpClientModule,
-    PipesModule
+    RouterModule.forRoot(routes, { enableTracing: true }),
+    BrowserModule,
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
-  providers: [TransactionService],
   bootstrap: [AppComponent],
+  providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

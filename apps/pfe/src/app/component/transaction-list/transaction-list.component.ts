@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { TransactionEntry } from '../../models/transaction.model';
 import { TransactionService } from '../../services/transfer.service';
@@ -11,11 +11,8 @@ import { sortByDesc } from '../../utils/helper';
   styleUrls: ['./transaction-list.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TransactionListComponent implements OnInit, OnDestroy {
+export class TransactionListComponent implements OnInit {
   transactionList: TransactionEntry[];
-  subscription: Subscription;
-  subscriptionTest: Subscription;
-  subscriptionError: string;
   isLoading: boolean;
   query: string;
 
@@ -37,8 +34,5 @@ export class TransactionListComponent implements OnInit, OnDestroy {
   }
   filterHistory(event: any) {
     this.query = event.currentTarget.value;
-  }
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }

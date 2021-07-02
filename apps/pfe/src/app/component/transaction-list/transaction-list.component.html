@@ -10,9 +10,6 @@
         <pfe-transaction-list-item [transactionItem]="transactionListItm | async | queryFilter: query"></pfe-transaction-list-item>
       </div>
     </ng-container>
-    <ng-container *ngIf="subscriptionError">
-      <p class="text-danger fs-6 text-center mt-4">{{subscriptionError}}</p>
-    </ng-container>
     <ng-container *ngIf="isLoading" >
       <div class="text-center">
         <pfe-loader></pfe-loader>
