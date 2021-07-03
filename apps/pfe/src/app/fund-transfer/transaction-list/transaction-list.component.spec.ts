@@ -4,8 +4,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
 import { QueryFilterPipe } from '../../common/pipes/query-filter/query-filter.pipe';
+import { TransactionService } from '../../fund-transfer/services/transfer.service';
 import { PfeNgxModule } from '../../pfe-ngx/pfe-ngx.module';
-import { TransactionService } from '../../services/transfer.service';
 
 import { TransactionListComponent } from './transaction-list.component';
 

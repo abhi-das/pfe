@@ -1,4 +1,4 @@
-import { TransactionEntry } from '../models/transaction.model';
+import { TransactionEntry } from '../fund-transfer/models';
 
 // In case of different type of object sorting TYPE can be added to args
 export const sortByDesc = (objA: TransactionEntry, objB: TransactionEntry) => {

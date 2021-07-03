@@ -2,12 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderComponent } from './component/header/header.component';
-import { MoneyTransferComponent } from './component/money-transfer/money-transfer.component';
-import { TransactionListComponent } from './component/transaction-list/transaction-list.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { TransactionService } from './services/transfer.service';
 import { CommonModule } from '@angular/common';
 import { PfeNgxModule } from './pfe-ngx/pfe-ngx.module';
 import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
@@ -21,6 +18,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment';
 import { appStore } from './store/reducers';
+import { TransactionService } from './fund-transfer/services/transfer.service';
+import { MoneyTransferComponent } from './fund-transfer/money-transfer/money-transfer.component';
+import { TransactionListComponent } from './fund-transfer/transaction-list/transaction-list.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;

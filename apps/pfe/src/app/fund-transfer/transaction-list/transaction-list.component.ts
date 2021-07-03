@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { TransactionEntry } from '../../models/transaction.model';
-import { TransactionService } from '../../services/transfer.service';
+import { TransactionEntry } from '../../fund-transfer/models';
+import { TransactionService } from '../../fund-transfer/services/transfer.service';
 import { sortByDesc } from '../../utils/helper';
 
 @Component({

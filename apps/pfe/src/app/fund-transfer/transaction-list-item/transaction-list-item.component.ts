@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { TransactionEntry } from '../../models/transaction.model';
+import { TransactionEntry } from '../../fund-transfer/models';
 
 @Component({
   selector: 'pfe-transaction-list-item',

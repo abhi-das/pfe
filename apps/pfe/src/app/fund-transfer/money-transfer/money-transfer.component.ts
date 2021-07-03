@@ -12,7 +12,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { TransactionService } from '../../services/transfer.service';
+import { TransactionService } from '../../fund-transfer/services/transfer.service';
 
 @Component({
   selector: 'pfe-money-transfer',
