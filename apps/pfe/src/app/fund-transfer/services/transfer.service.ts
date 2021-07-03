@@ -24,24 +24,36 @@ export class TransactionService {
   transactions: Observable<
     TransactionEntry[]
   > = this.transSubject.asObservable();
+  headers = new HttpHeaders().set(
+    'Content-Type',
+    'application/json; charset=UTF-8'
+  );
 
   constructor(private http: HttpClient) {
     this.loadTransferHistory().subscribe();
   }
 
+  loadTransHistory(): Observable<TransactionEntry[]> {
+    return this.http
+      .get<Transactions>(environment.apiUrl, { headers: this.headers })
+      .pipe(
+        map((res) => res.data),
+        catchError(() => {
+          return throwError('Error on loading transaction history!');
+        })
+      );
+  }
   loadTransferHistory() {
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json; charset=UTF-8')
-      .set('Access-Control-Allow-Origin', '*')
-      .set(
-        'Access-Control-Allow-Headers',
-        'Content-Type, Access-Control-Allow-Headers, X-Requested-With, Accept'
-      )
-      .set('Access-Control-Allow-Methods', 'GET')
-      .set('Access-Control-Allow-Credentials', 'true');
+    // .set('Access-Control-Allow-Origin', '*')
+    // .set(
+    //   'Access-Control-Allow-Headers',
+    //   'Content-Type, Access-Control-Allow-Headers, X-Requested-With, Accept'
+    // )
+    // .set('Access-Control-Allow-Methods', 'GET')
+    // .set('Access-Control-Allow-Credentials', 'true');
 
     return this.http
-      .get<Transactions>(environment.apiUrl, { headers })
+      .get<Transactions>(environment.apiUrl, { headers: this.headers })
       .pipe(
         map((response) => response.data),
         catchError(() => {

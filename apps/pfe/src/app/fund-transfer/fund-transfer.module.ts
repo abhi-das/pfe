@@ -16,11 +16,17 @@ import { TransactionService } from './services/transfer.service';
 import { MoneyTransferComponent } from './money-transfer/money-transfer.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { TransactionListItemComponent } from './transaction-list-item/transaction-list-item.component';
+import { TransactionResolverService } from './services/transaction-resolver.service';
+import { EffectsModule } from '@ngrx/effects';
+import { TransactionEffectServices } from './services/transaction.effects.service';
 
 const fundTransferRouters: Routes = [
   {
     path: '',
     component: TransferComponent,
+    resolve: {
+      transHistory: TransactionResolverService,
+    },
   },
 ];
 @NgModule({
@@ -41,6 +47,7 @@ const fundTransferRouters: Routes = [
     PipesModule,
     ReactiveFormsModule,
     StoreModule.forFeature('transfer', transferStore.transferReducers),
+    EffectsModule.forFeature([TransactionEffectServices]),
   ],
   exports: [TransferComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -49,7 +56,7 @@ export class FundTransferModule {
   static forRoot(): ModuleWithProviders<FundTransferModule> {
     return {
       ngModule: FundTransferModule,
-      providers: [TransactionService],
+      providers: [TransactionService, TransactionResolverService],
     };
   }
 }
