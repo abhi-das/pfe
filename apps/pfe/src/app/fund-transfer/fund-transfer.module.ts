@@ -11,7 +11,7 @@ import { AmountValidatorDirective } from '../common/directive/amount-validator/a
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
-import { transferStore } from '../store/reducers';
+import { transactionStore } from '../store/reducers';
 import { TransactionService } from './services/transfer.service';
 import { MoneyTransferComponent } from './money-transfer/money-transfer.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
@@ -46,7 +46,10 @@ const fundTransferRouters: Routes = [
     HttpClientModule,
     PipesModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('transfer', transferStore.transferReducers),
+    StoreModule.forFeature(
+      'transactions',
+      transactionStore.transactionReducers
+    ),
     EffectsModule.forFeature([TransactionEffectServices]),
   ],
   exports: [TransferComponent],

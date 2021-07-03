@@ -1,9 +1,9 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { TransactionEntry, Transactions } from '../../fund-transfer/models';
 import { TransferActions } from '../actions';
 
-export interface TransferState extends EntityState<TransactionEntry> {
+export interface TransactionState extends EntityState<TransactionEntry> {
   // data: TransactionEntry[] | undefined
 }
 
@@ -22,12 +22,14 @@ export const transactionAdaptor: EntityAdapter<TransactionEntry> = createEntityA
 );
 export const initialTransactionState = transactionAdaptor.getInitialState();
 
-export const transferReducers = createReducer(
+export const transactionReducers = createReducer(
   initialTransactionState,
   on(
     TransferActions.loadTransactionHistorySuccessFul,
-    (state: TransferState, action: Transactions) => {
+    (state: TransactionState, action: Transactions) => {
       return transactionAdaptor.addMany(action.data, state);
     }
   )
 );
+
+export const { selectAll } = transactionAdaptor.getSelectors();

@@ -50,7 +50,6 @@ const routes: Routes = [
     EffectsModule.forRoot([]),
   ],
   bootstrap: [AppComponent],
-  providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

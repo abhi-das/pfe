@@ -29,9 +29,7 @@ export class TransactionService {
     'application/json; charset=UTF-8'
   );
 
-  constructor(private http: HttpClient) {
-    this.loadTransferHistory().subscribe();
-  }
+  constructor(private http: HttpClient) {}
 
   loadTransHistory(): Observable<TransactionEntry[]> {
     return this.http
@@ -43,29 +41,7 @@ export class TransactionService {
         })
       );
   }
-  loadTransferHistory() {
-    // .set('Access-Control-Allow-Origin', '*')
-    // .set(
-    //   'Access-Control-Allow-Headers',
-    //   'Content-Type, Access-Control-Allow-Headers, X-Requested-With, Accept'
-    // )
-    // .set('Access-Control-Allow-Methods', 'GET')
-    // .set('Access-Control-Allow-Credentials', 'true');
 
-    return this.http
-      .get<Transactions>(environment.apiUrl, { headers: this.headers })
-      .pipe(
-        map((response) => response.data),
-        catchError(() => {
-          return throwError('Error on loading transaction history!');
-        }),
-        tap((res: TransactionEntry[]) => this.transSubject.next(res))
-        // shareReplay()
-      );
-  }
-  getTransactionHistory(): Observable<TransactionEntry[]> {
-    return this.transactions;
-  }
   createTransaction(transInfo: UserTransactionInfo): TransactionEntry {
     return {
       categoryCode: '#d51271',
