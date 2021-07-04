@@ -14,3 +14,8 @@ export const hasTransactionListLoaded = createSelector(
   selectTransactionState,
   (state) => state.hasTransactionListLoaded
 );
+
+export const hasTransError = createSelector(
+  selectTransactionState,
+  (state) => state.transactionError
+);

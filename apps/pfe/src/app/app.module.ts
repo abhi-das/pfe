@@ -12,6 +12,7 @@ import { appStore } from './store/reducers';
 import { AuthGuardService } from './auth/services/auth.guard.service';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthModule } from './auth/auth.module';
+import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   // {
@@ -28,6 +29,10 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
   },
   {
+    path: '404',
+    component: PageNotFoundComponent,
+  },
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full',
@@ -35,7 +40,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, PageNotFoundComponent],
   imports: [
     CommonModule,
     HttpClientModule,

@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Observable } from 'rxjs';
-import { concatMap, map, tap } from 'rxjs/operators';
+import { Action } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
+import { catchError, concatMap, map, tap } from 'rxjs/operators';
 import { TransferActions } from '../../store/actions';
 import { TransactionEntry } from '../models';
 import { TransactionService } from './transfer.service';
+
+export class EffectError implements Action {
+  readonly type = '[Error] Effect Error';
+}
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +33,10 @@ export class TransactionEffectServices {
       map((trans: TransactionEntry[]) =>
         TransferActions.loadTransactionHistorySuccessFul({ data: trans })
       )
+      // catchError(() => {
+      //   console.log('Here Error!')
+      //   return of(TransferActions.loadTransactionHistoryFailure({ transactionError: "Error on loading history!" }))
+      // })
     );
   });
 }

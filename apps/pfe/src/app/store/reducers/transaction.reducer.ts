@@ -1,11 +1,12 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { createReducer, on } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import { TransactionEntry, Transactions } from '../../fund-transfer/models';
 import { TransferActions } from '../actions';
 
 export interface TransactionState extends EntityState<TransactionEntry> {
   // data: TransactionEntry[] | undefined
   hasTransactionListLoaded: boolean;
+  transactionError?: string;
 }
 
 // Without Adapter
@@ -23,12 +24,14 @@ export const transactionAdaptor: EntityAdapter<TransactionEntry> = createEntityA
 );
 export const initialTransactionState = transactionAdaptor.getInitialState({
   hasTransactionListLoaded: false,
+  transactionError: '',
 });
 
 const hasTransactionListLoadedUpdateHandler = (state: TransactionState) => {
   return {
     ...state,
     hasTransactionListLoaded: true,
+    transactionError: '',
   };
 };
 
@@ -46,7 +49,19 @@ export const transactionReducers = createReducer(
   on(
     TransferActions.addNewTransaction,
     (state: TransactionState, { lastTransaction }) => {
-      return transactionAdaptor.addOne(lastTransaction, state);
+      return transactionAdaptor.addOne(lastTransaction, {
+        ...state,
+        transactionError: '',
+      });
+    }
+  ),
+  on(
+    TransferActions.loadTransactionHistoryFailure,
+    (state: TransactionState, { transactionError }) => {
+      return {
+        ...state,
+        transactionError: transactionError,
+      };
     }
   )
 );

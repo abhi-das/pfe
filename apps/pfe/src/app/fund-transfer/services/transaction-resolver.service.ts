@@ -30,7 +30,17 @@ export class TransactionResolverService implements Resolve<any> {
           this._store.dispatch(TransferActions.loadTransactionHistory());
         }
       }),
-      filter((hasListLoaded) => hasListLoaded),
+      filter((hasListLoaded) => {
+        if (!hasListLoaded) {
+          this._store.dispatch(
+            TransferActions.loadTransactionHistoryFailure({
+              transactionError: 'Error on loading history!',
+            })
+          );
+          return true;
+        }
+        return hasListLoaded;
+      }),
       first(),
       finalize(() => (this.isLoading = false))
     );

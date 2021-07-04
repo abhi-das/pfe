@@ -11,6 +11,10 @@ export const loadTransactionHistorySuccessFul = createAction(
 );
 
 // TODO: loadTransactionHistoryFailure
+export const loadTransactionHistoryFailure = createAction(
+  '[Load Transaction Effect] Fail To Transactions',
+  props<{ transactionError: string }>()
+);
 
 export const addNewTransaction = createAction(
   '[Money Transfer] Add New Transaction',

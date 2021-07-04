@@ -17,5 +17,8 @@
         <pfe-inline-component></pfe-inline-component>
       </div>
     </ng-container>
+    <ng-container *ngIf="apiError | async">
+      <p class="text-danger">{{ apiError | async }}</p>
+    </ng-container>
   </div>
 </div>

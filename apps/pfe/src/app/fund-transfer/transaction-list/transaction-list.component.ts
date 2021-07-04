@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { combineLatest, Observable, of, Subscription } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { TransactionEntry } from '../../fund-transfer/models';
 import { appStore } from '../../store/reducers';
 import { transactionSelector } from '../../store/selectors';
@@ -19,6 +19,8 @@ export class TransactionListComponent implements OnInit {
   query: string;
 
   transactionListItm: Observable<TransactionEntry[]>;
+  apiError: Observable<string | undefined>;
+  comLs: Subscription;
 
   constructor(private _store: Store<appStore.AppState>) {}
 
@@ -34,6 +36,13 @@ export class TransactionListComponent implements OnInit {
           }
         })
       );
+    this.apiError = this._store.select(transactionSelector.hasTransError);
+    // this.comLs = combineLatest([this.transactionListItm, this.apiError]).subscribe((res) => {
+    //   if(res[1] !== "") {
+    //     this.simpleErr = res[1];
+    //   }
+    //   this.isListLoading = false
+    // })
   }
   filterHistory(event: any) {
     this.query = event.currentTarget.value;
