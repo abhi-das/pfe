@@ -1,0 +1,48 @@
+<div
+  class="transaction-item p-0"
+  *ngFor="let historyItem of transactionItem; trackBy: trackByDate"
+>
+  <div
+    class="d-flex list-item align-items-center border-start border-5 px-2 py-3 my-2"
+    [ngClass]="
+      isBalanceBelowZero(historyItem.transaction.amountCurrency.amount) === true
+        ? 'border-danger'
+        : 'border-success'
+    "
+    data-test-hook="transactionColour"
+  >
+    <p data-test-hook="transactionDate" class="transaction-item_date pe-4">
+      {{ historyItem.dates.valueDate | date: 'MMM, d' }}
+    </p>
+    <div class="merchant-details flex-grow-1">
+      <h4
+        data-test-hook="transactionMerchantName"
+        class="transaction-item_user card-title fs-6 m-0"
+      >
+        {{ historyItem.merchant.name }}
+      </h4>
+      <p
+        data-test-hook="transactionType"
+        class="transaction-item_type fs-6 m-0 text-secondary"
+      >
+        {{ historyItem.transaction.type }}
+      </p>
+    </div>
+    <p
+      data-test-hook="transactionAmount"
+      class="transaction-item_amount text-alert"
+      [ngClass]="
+        isBalanceBelowZero(historyItem.transaction.amountCurrency.amount) ===
+        true
+          ? 'text-danger'
+          : 'text-success'
+      "
+    >
+      €{{
+        historyItem.transaction.amountCurrency.amount
+          | number: '1.2-2'
+          | removecomma
+      }}
+    </p>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="card border-0 transaction-history">
+  <div class="card-header bg-primary text-white pt-3 pb-3">
+    <i class="lni lni-list pe-3 fs-5 align-middle"></i>Transactions
+    <strong>List</strong>
+  </div>
+  <div class="card-body">
+    <ng-container *ngIf="transactionListItm | async">
+      <pfe-filter (inputChange)="filterHistory($event)"></pfe-filter>
+      <div class="transaction-history_scrollable mt-3 pe-3 overflow-auto">
+        <pfe-transaction-list-item
+          [transactionItem]="transactionListItm | async | queryFilter: query"
+        ></pfe-transaction-list-item>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isListLoading">
+      <div class="text-center">
+        <pfe-inline-component></pfe-inline-component>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="apiError | async">
+      <p class="text-danger">{{ apiError | async }}</p>
+    </ng-container>
+  </div>
+</div>

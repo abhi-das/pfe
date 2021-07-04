@@ -1,10 +1,10 @@
-import { TransactionEntry } from "../models/transaction.model";
+import { TransactionEntry } from '../fund-transfer/models';
 
 // In case of different type of object sorting TYPE can be added to args
-export const sortByDesc = (objA: (TransactionEntry), objB: (TransactionEntry)) => {
+export const sortByDesc = (objA: TransactionEntry, objB: TransactionEntry) => {
   // If current and next has same value then no execution
-  if(objB.dates.valueDate === objA.dates.valueDate) {
+  if (objB.dates.valueDate === objA.dates.valueDate) {
     return 0;
   }
   return objB.dates.valueDate - objA.dates.valueDate;
-}
+};

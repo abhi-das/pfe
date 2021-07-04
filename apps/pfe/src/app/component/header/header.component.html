@@ -3,9 +3,46 @@
     <a class="navbar-brand" href="#">
       <pfe-logo></pfe-logo>
     </a>
-    <p class="mt-0 mb-0 text-primary">
-      Frontend <strong>Technical Assignment</strong>
-      <button type="button" class="btn">Sign-in</button>
-    </p>
+    <div class="mt-0 mb-0 d-flex align-items-baseline">
+      <p class="text-primary m-0">
+        Frontend <strong>Technical Assignment</strong>
+      </p>
+      <button
+        *ngIf="isLoggedIn | async"
+        type="button"
+        class="btn btn-sm rounded-0 mx-2"
+        [routerLink]="['']"
+        [routerLinkActive]="['bg-info']"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Sign-in
+      </button>
+      <button
+        *ngIf="isLoggedOut | async"
+        type="button"
+        class="btn btn-sm rounded-0 mx-2"
+        (click)="onSignOut()"
+      >
+        Sign-out
+      </button>
+      <button
+        class="btn btn-sm rounded-0 mx-2"
+        *ngIf="isLoggedOut | async"
+        [routerLink]="['profile']"
+        [routerLinkActive]="['bg-info']"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Profile
+      </button>
+      <button
+        type="button"
+        class="btn btn-sm rounded-0 mx-2"
+        [routerLink]="['transfer']"
+        [routerLinkActive]="['bg-info']"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Fund Transfer
+      </button>
+    </div>
   </nav>
 </header>

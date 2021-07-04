@@ -5,9 +5,7 @@ import { QueryFilterPipe } from './query-filter/query-filter.pipe';
 
 @NgModule({
   declarations: [RemoveCommaPipe, QueryFilterPipe],
-  imports: [
-    CommonModule
-  ],
-  exports: [RemoveCommaPipe, QueryFilterPipe]
+  imports: [CommonModule],
+  exports: [RemoveCommaPipe, QueryFilterPipe],
 })
 export class PipesModule {}

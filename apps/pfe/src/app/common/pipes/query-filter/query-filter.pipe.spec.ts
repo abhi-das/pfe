@@ -5,42 +5,42 @@ describe('QueryFilterPipe', () => {
   const listOfFirstType = [
     {
       merchant: {
-        name: "Elena"
-      }
+        name: 'Elena',
+      },
     },
     {
       merchant: {
-        name: "Jemas"
-      }
+        name: 'Jemas',
+      },
     },
-      {
-        merchant: {
-        name: "Johan"
-      }
+    {
+      merchant: {
+        name: 'Johan',
+      },
     },
-      {
-        merchant: {
-        name: "Ellit"
-      }
-    }
+    {
+      merchant: {
+        name: 'Ellit',
+      },
+    },
   ];
   const filteredList = [
     {
       merchant: {
-        name: "Elena"
-      }
+        name: 'Elena',
+      },
     },
     {
       merchant: {
-        name: "Ellit"
-      }
-    }
+        name: 'Ellit',
+      },
+    },
   ];
   it('create an instance', () => {
     expect(qFilterPipe).toBeTruthy();
   });
   it('Filter the array ', () => {
-    const transformedArray = qFilterPipe.transform(listOfFirstType , "el");
+    const transformedArray = qFilterPipe.transform(listOfFirstType, 'el');
     expect(transformedArray).toEqual(filteredList);
   });
 
@@ -49,8 +49,8 @@ describe('QueryFilterPipe', () => {
     expect(transformedArray).toEqual(listOfFirstType);
   });
   it('Filter should return null', () => {
-    const str ="something";
-    const transformedArray = qFilterPipe.transform(str, "e");
+    const str = 'something';
+    const transformedArray = qFilterPipe.transform(str, 'e');
     expect(transformedArray).toBeNull();
   });
 });

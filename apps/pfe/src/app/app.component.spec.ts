@@ -2,12 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderComponent } from './component/header/header.component';
-import { MoneyTransferComponent } from './component/money-transfer/money-transfer.component';
-import { TransactionListComponent } from './component/transaction-list/transaction-list.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { TransactionService } from './services/transfer.service';
 import { CommonModule } from '@angular/common';
 import { PfeNgxModule } from './pfe-ngx/pfe-ngx.module';
 import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
@@ -15,7 +12,15 @@ import { AmountValidatorDirective } from './common/directive/amount-validator/am
 import { RemoveCommaPipe } from './common/pipes/remove-comma/remove-comma.pipe';
 import { PipesModule } from './common/pipes/pipes.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
+import { AuthModule } from './auth/auth.module';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { environment } from '../environments/environment';
+import { appStore } from './store/reducers';
+import { TransactionService } from './fund-transfer/services/transfer.service';
+import { MoneyTransferComponent } from './fund-transfer/money-transfer/money-transfer.component';
+import { TransactionListComponent } from './fund-transfer/transaction-list/transaction-list.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -31,7 +36,14 @@ describe('AppComponent', () => {
         ReactiveFormsModule,
         HttpClientModule,
         LibBbUiModule,
-        PipesModule
+        PipesModule,
+        AuthModule,
+        StoreModule.forRoot(appStore.appReducer),
+        StoreDevtoolsModule.instrument({
+          maxAge: 25,
+          logOnly: environment.production,
+        }),
+        EffectsModule.forRoot([]),
       ],
       declarations: [
         AppComponent,
@@ -42,7 +54,7 @@ describe('AppComponent', () => {
         RemoveCommaPipe,
       ],
       providers: [TransactionService],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 

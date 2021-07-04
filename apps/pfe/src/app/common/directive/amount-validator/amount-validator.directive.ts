@@ -8,19 +8,17 @@ import { amountRegex } from '../../../utils/validation-rules';
     {
       provide: NG_VALIDATORS,
       useExisting: AmountValidatorDirective,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class AmountValidatorDirective implements Validator {
-
   regEx = new RegExp(amountRegex, 'i');
 
   // Get the field and run the reg-ex test
   validate(field: AbstractControl): { [key: string]: any } | null {
-
-    if(field.value && !this.regEx.test(field.value)) {
-      return { 'amountInvalid': true }
+    if (field.value && !this.regEx.test(field.value)) {
+      return { amountInvalid: true };
     }
     return null;
   }

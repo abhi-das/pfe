@@ -1,1 +1,1 @@
-export const amountRegex = "^-?[0-9]+$";
+export const amountRegex = '^-?[0-9]+$';
