@@ -1,5 +1,6 @@
 import {
   CUSTOM_ELEMENTS_SCHEMA,
+  ModuleWithProviders,
   // ModuleWithProviders,
   NgModule,
 } from '@angular/core';
@@ -15,6 +16,7 @@ import { AuthGuardService } from './services/auth.guard.service';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffectService } from './services/auth.effects.service';
 import { ProfileComponent } from './profile/profile.component';
+import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
 
 const authRoutes: Routes = [
   {
@@ -31,6 +33,7 @@ const authRoutes: Routes = [
 @NgModule({
   declarations: [LoginComponent, ProfileComponent],
   imports: [
+    LibBbUiModule,
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -39,14 +42,14 @@ const authRoutes: Routes = [
     EffectsModule.forFeature([AuthEffectService]),
   ],
   exports: [LoginComponent],
-  providers: [AuthService, AuthGuardService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  // providers: [AuthService, AuthGuardService],
 })
 export class AuthModule {
-  // static forRoot(): ModuleWithProviders<AuthModule> {
-  //   return {
-  //     ngModule: AuthModule,
-  //     providers: [AuthService, AuthGuardService]
-  //   }
-  // }
+  static forRoot(): ModuleWithProviders<AuthModule> {
+    return {
+      ngModule: AuthModule,
+      providers: [AuthService, AuthGuardService],
+    };
+  }
 }

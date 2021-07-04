@@ -15,7 +15,7 @@ import { sortByDesc } from '../../utils/helper';
 })
 export class TransactionListComponent implements OnInit {
   transactionList: TransactionEntry[];
-  isLoading: boolean;
+  isListLoading: boolean;
   query: string;
 
   transactionListItm: Observable<TransactionEntry[]>;
@@ -23,14 +23,14 @@ export class TransactionListComponent implements OnInit {
   constructor(private _store: Store<appStore.AppState>) {}
 
   ngOnInit(): void {
-    this.isLoading = true;
+    this.isListLoading = true;
     this.transactionListItm = this._store
       .select(transactionSelector.transactionSelectAll)
       .pipe(
         tap((res) => {
           if (res.length) {
             res.sort(sortByDesc);
-            this.isLoading = false;
+            this.isListLoading = false;
           }
         })
       );

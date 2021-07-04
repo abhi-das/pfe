@@ -6,7 +6,6 @@ import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
 import { HttpClientModule } from '@angular/common/http';
 import { PipesModule } from '../common/pipes/pipes.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoaderComponent } from '../component/loader/loader.component';
 import { AmountValidatorDirective } from '../common/directive/amount-validator/amount-validator.directive';
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
@@ -35,7 +34,6 @@ const fundTransferRouters: Routes = [
     MoneyTransferComponent,
     TransactionListComponent,
     TransactionListItemComponent,
-    LoaderComponent,
     AmountValidatorDirective,
   ],
   imports: [

@@ -6,12 +6,13 @@
 
 - Latest Angular implementation
 - Custom Directive and Pipes implementation
-- Typescript
-- SCSS Support
+- Ngrx Store Implementation
 - Bootstrap and ngx-bootstrap implementation
-- LineIcon Support
 - CI/CD with Github Actions
 - AWS S3 Integration Enabled
+- Typescript
+- SCSS Support
+- LineIcon Support
 - Jest Test cases (Can be added more scenarios)
 - Complete Application Walk through using Cypress E2E Tests
 - Mobile First Approach

@@ -41,7 +41,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes, { enableTracing: false }),
     BrowserModule,
-    AuthModule,
+    AuthModule.forRoot(),
     StoreModule.forRoot(appStore.appReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

@@ -59,6 +59,9 @@
 .lni-close::before {
   content: '\ea6a';
 }
+.lni-user::before {
+  content: '\ebf1';
+}
 body {
   background-image: url('./assets/background.webp');
   background-size: cover;

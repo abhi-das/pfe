@@ -22,6 +22,7 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent implements OnInit {
   errorRes: string;
   loginForm: FormGroup;
+  isLoading = false;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
   }
   onLoginSubmit() {
     if (this.loginForm.valid) {
+      this.isLoading = true;
       this.authServ
         .login(this.loginFormField.email.value)
         .pipe(
@@ -49,9 +51,13 @@ export class LoginComponent implements OnInit {
               this.store.dispatch(loginAction({ user: res }));
               this.router.navigateByUrl('/transfer');
             }
+            this.isLoading = false;
           })
         )
-        .subscribe(noop, () => console.log('Login fail'));
+        .subscribe(noop, () => {
+          console.log('Login fail');
+          this.isLoading = false;
+        });
     }
   }
 }
