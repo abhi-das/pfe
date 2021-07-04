@@ -41,32 +41,4 @@ export class TransactionService {
         })
       );
   }
-
-  createTransaction(transInfo: UserTransactionInfo): TransactionEntry {
-    return {
-      categoryCode: '#d51271',
-      dates: {
-        valueDate: transInfo.valueDate,
-      },
-      transaction: {
-        amountCurrency: {
-          amount: transInfo.amount,
-          currencyCode: 'EUR',
-        },
-        type: 'Card Payment',
-        creditDebitIndicator: 'DBIT',
-      },
-      merchant: {
-        name: transInfo.name,
-        accountNumber: 'SI64397745065188826',
-      },
-    };
-  }
-  addRecentTransaction(userTransactionInfo: UserTransactionInfo) {
-    const newCopy = [
-      ...this.transSubject.getValue(),
-      this.createTransaction(userTransactionInfo),
-    ].sort(sortByDesc);
-    this.transSubject.next(newCopy);
-  }
 }

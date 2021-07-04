@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { concatMap, map, tap } from 'rxjs/operators';
 import { TransferActions } from '../../store/actions';
-import { TransactionEntry, Transactions } from '../models';
+import { TransactionEntry } from '../models';
 import { TransactionService } from './transfer.service';
 
 @Injectable({

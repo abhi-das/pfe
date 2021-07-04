@@ -42,6 +42,12 @@ export const transactionReducers = createReducer(
         hasTransactionListLoadedUpdateHandler(state)
       );
     }
+  ),
+  on(
+    TransferActions.addNewTransaction,
+    (state: TransactionState, { lastTransaction }) => {
+      return transactionAdaptor.addOne(lastTransaction, state);
+    }
   )
 );
 

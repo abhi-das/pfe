@@ -11,8 +11,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { TransactionService } from '../../fund-transfer/services/transfer.service';
+import { TransferActions } from '../../store/actions';
+import { appStore } from '../../store/reducers';
 
 @Component({
   selector: 'pfe-money-transfer',
@@ -29,7 +32,8 @@ export class MoneyTransferComponent implements OnInit {
   constructor(
     private modalService: BsModalService,
     private fb: FormBuilder,
-    private trsHistorySrv: TransactionService
+    private trsHistorySrv: TransactionService,
+    private _store: Store<appStore.AppState>
   ) {}
 
   ngOnInit(): void {
@@ -64,12 +68,30 @@ export class MoneyTransferComponent implements OnInit {
     );
   }
   onTransferSubmit() {
-    const userTransactionInfo = {
-      valueDate: Number(new Date().getTime()),
-      amount: Number(this.transferFormFields.amount.value),
-      name: this.transferFormFields.toAccount.value,
+    const recentTrans = {
+      categoryCode: '#d51271',
+      dates: {
+        valueDate: Number(new Date().getTime()),
+      },
+      transaction: {
+        amountCurrency: {
+          amount: Number(this.transferFormFields.amount.value),
+          currencyCode: 'EUR',
+        },
+        type: 'Card Payment',
+        creditDebitIndicator: 'DBIT',
+      },
+      merchant: {
+        name: this.transferFormFields.toAccount.value,
+        accountNumber: 'SI64397745065188826',
+      },
     };
-    this.trsHistorySrv.addRecentTransaction(userTransactionInfo);
+
+    this._store.dispatch(
+      TransferActions.addNewTransaction({ lastTransaction: recentTrans })
+    );
+
+    // Dispatch add new transaction to Store
     this.onReset();
     this.modalRef.hide();
   }
