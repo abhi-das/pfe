@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { noop } from 'rxjs';
@@ -24,11 +25,19 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoading = false;
   constructor(
+    private pageTitle: Title,
+    private pageMeta: Meta,
     private fb: FormBuilder,
     private router: Router,
     private authServ: AuthService,
     private store: Store<appStore.AppState>
-  ) {}
+  ) {
+    this.pageTitle.setTitle('Banking Application Login');
+    this.pageMeta.addTag({
+      name: 'description',
+      content: 'The best banking facility, online banking login.',
+    });
+  }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
