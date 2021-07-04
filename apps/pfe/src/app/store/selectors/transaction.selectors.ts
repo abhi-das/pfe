@@ -9,3 +9,8 @@ export const transactionSelectAll = createSelector(
   selectTransactionState,
   transactionStore.selectAll
 );
+
+export const hasTransactionListLoaded = createSelector(
+  selectTransactionState,
+  (state) => state.hasTransactionListLoaded
+);

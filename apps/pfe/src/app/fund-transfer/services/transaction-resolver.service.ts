@@ -4,11 +4,12 @@ import {
   Resolve,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { noop, Observable } from 'rxjs';
-import { finalize, first, tap } from 'rxjs/operators';
+import { filter, finalize, first, tap } from 'rxjs/operators';
 import { TransferActions } from '../../store/actions';
 import { appStore } from '../../store/reducers';
+import { hasTransactionListLoaded } from '../../store/selectors/transaction.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -22,12 +23,14 @@ export class TransactionResolverService implements Resolve<any> {
     state: RouterStateSnapshot
   ): Observable<any> {
     return this._store.pipe(
-      tap(() => {
-        if (!this.isLoading) {
+      select(hasTransactionListLoaded),
+      tap((hasListLoaded) => {
+        if (!this.isLoading && !hasListLoaded) {
           this.isLoading = true;
           this._store.dispatch(TransferActions.loadTransactionHistory());
         }
       }),
+      filter((hasListLoaded) => hasListLoaded),
       first(),
       finalize(() => (this.isLoading = false))
     );

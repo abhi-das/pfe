@@ -5,6 +5,7 @@ import { TransferActions } from '../actions';
 
 export interface TransactionState extends EntityState<TransactionEntry> {
   // data: TransactionEntry[] | undefined
+  hasTransactionListLoaded: boolean;
 }
 
 // Without Adapter
@@ -20,14 +21,26 @@ export const transactionAdaptor: EntityAdapter<TransactionEntry> = createEntityA
       tranEntry.merchant.name.replace(/ /g, ''),
   }
 );
-export const initialTransactionState = transactionAdaptor.getInitialState();
+export const initialTransactionState = transactionAdaptor.getInitialState({
+  hasTransactionListLoaded: false,
+});
+
+const hasTransactionListLoadedUpdateHandler = (state: TransactionState) => {
+  return {
+    ...state,
+    hasTransactionListLoaded: true,
+  };
+};
 
 export const transactionReducers = createReducer(
   initialTransactionState,
   on(
     TransferActions.loadTransactionHistorySuccessFul,
     (state: TransactionState, action: Transactions) => {
-      return transactionAdaptor.addMany(action.data, state);
+      return transactionAdaptor.addMany(
+        action.data,
+        hasTransactionListLoadedUpdateHandler(state)
+      );
     }
   )
 );
