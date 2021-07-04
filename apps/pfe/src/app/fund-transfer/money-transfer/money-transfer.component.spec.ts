@@ -2,10 +2,14 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RemoveCommaPipe } from '../../common/pipes/remove-comma/remove-comma.pipe';
 import { PfeNgxModule } from '../../pfe-ngx/pfe-ngx.module';
+import { appStore, transactionStore } from '../../store/reducers';
+import { TransactionEffectServices } from '../services/transaction.effects.service';
 
 import { MoneyTransferComponent } from './money-transfer.component';
 
@@ -20,6 +24,13 @@ describe('MoneyTransferComponent', () => {
         PfeNgxModule,
         LibBbUiModule,
         HttpClientTestingModule,
+        StoreModule.forRoot(appStore.appReducer),
+        StoreModule.forFeature(
+          'transactions',
+          transactionStore.transactionReducers
+        ),
+        EffectsModule.forRoot([]),
+        EffectsModule.forFeature([TransactionEffectServices]),
       ],
       declarations: [RemoveCommaPipe, MoneyTransferComponent],
       providers: [BsModalRef, BsModalService, FormBuilder],
