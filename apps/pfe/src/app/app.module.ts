@@ -8,11 +8,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { appStore } from './store/reducers';
-import { AuthGuardService } from './auth/services/auth.guard.service';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthModule } from './auth/auth.module';
+import { AuthGuardService } from './auth/services/auth.guard.service';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
+import { appStore } from './store/reducers';
 
 const routes: Routes = [
   // {

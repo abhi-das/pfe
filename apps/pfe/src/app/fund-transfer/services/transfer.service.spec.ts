@@ -5,8 +5,6 @@ import {
 } from '@angular/common/http/testing';
 
 import { TransactionService } from './transfer.service';
-import { TransactionEntry } from '../models';
-import { environment } from 'apps/pfe/src/environments/environment';
 
 describe('TransferService', () => {
   let service: TransactionService;

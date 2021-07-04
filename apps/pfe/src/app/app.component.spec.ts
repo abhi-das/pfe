@@ -18,9 +18,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment';
 import { appStore } from './store/reducers';
-import { TransactionService } from './fund-transfer/services/transfer.service';
-import { MoneyTransferComponent } from './fund-transfer/money-transfer/money-transfer.component';
-import { TransactionListComponent } from './fund-transfer/transaction-list/transaction-list.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -37,7 +34,7 @@ describe('AppComponent', () => {
         HttpClientModule,
         LibBbUiModule,
         PipesModule,
-        AuthModule,
+        AuthModule.forRoot(),
         StoreModule.forRoot(appStore.appReducer),
         StoreDevtoolsModule.instrument({
           maxAge: 25,
@@ -48,12 +45,9 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         HeaderComponent,
-        MoneyTransferComponent,
-        TransactionListComponent,
         AmountValidatorDirective,
         RemoveCommaPipe,
       ],
-      providers: [TransactionService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });

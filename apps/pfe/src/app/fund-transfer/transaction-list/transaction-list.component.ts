@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { combineLatest, Observable, of, Subscription } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { TransactionEntry } from '../../fund-transfer/models';
 import { appStore } from '../../store/reducers';
 import { transactionSelector } from '../../store/selectors';

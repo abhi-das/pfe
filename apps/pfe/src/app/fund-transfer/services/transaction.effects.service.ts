@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { catchError, concatMap, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { concatMap, map } from 'rxjs/operators';
 import { TransferActions } from '../../store/actions';
 import { TransactionEntry } from '../models';
 import { TransactionService } from './transfer.service';

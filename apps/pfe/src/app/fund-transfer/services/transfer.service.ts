@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, catchError, tap } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { TransactionEntry, Transactions } from '../models';
 import { environment } from 'apps/pfe/src/environments/environment';
-import { sortByDesc } from '../../utils/helper';
 
 export interface ErrTemp {
   message: string;

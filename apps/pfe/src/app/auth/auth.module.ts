@@ -1,7 +1,6 @@
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   ModuleWithProviders,
-  // ModuleWithProviders,
   NgModule,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';

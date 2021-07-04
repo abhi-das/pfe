@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { noop, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { filter, finalize, first, tap } from 'rxjs/operators';
 import { TransferActions } from '../../store/actions';
 import { appStore } from '../../store/reducers';
