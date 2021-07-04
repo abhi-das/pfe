@@ -14,8 +14,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from './services/auth.guard.service';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffectService } from './services/auth.effects.service';
+import { ProfileComponent } from './profile/profile.component';
 
 const authRoutes: Routes = [
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
   {
     path: '',
     component: LoginComponent,
@@ -23,7 +28,7 @@ const authRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, ProfileComponent],
   imports: [
     CommonModule,
     HttpClientModule,
