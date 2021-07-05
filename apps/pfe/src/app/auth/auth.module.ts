@@ -15,7 +15,6 @@ import { AuthGuardService } from './services/auth.guard.service';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffectService } from './services/auth.effects.service';
 import { ProfileComponent } from './profile/profile.component';
-import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
 
 const authRoutes: Routes = [
   {
@@ -32,7 +31,6 @@ const authRoutes: Routes = [
 @NgModule({
   declarations: [LoginComponent, ProfileComponent],
   imports: [
-    LibBbUiModule,
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,

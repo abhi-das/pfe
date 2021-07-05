@@ -13,6 +13,7 @@ import { AuthModule } from './auth/auth.module';
 import { AuthGuardService } from './auth/services/auth.guard.service';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { appStore } from './store/reducers';
+import { LibBbUiModule } from '@pfe-platform/lib-bb-ui';
 
 const routes: Routes = [
   // {
@@ -46,6 +47,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes, { enableTracing: false }),
     BrowserModule,
+    LibBbUiModule,
     AuthModule.forRoot(),
     StoreModule.forRoot(appStore.appReducer),
     StoreDevtoolsModule.instrument({
