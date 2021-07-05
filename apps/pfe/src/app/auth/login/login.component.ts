@@ -9,7 +9,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { noop } from 'rxjs';
-import { tap } from 'rxjs/operators/tap';
+import { tap } from 'rxjs/operators';
 
 import { loginAction } from '../../store/actions/auth.actions';
 import { appStore } from '../../store/reducers';
